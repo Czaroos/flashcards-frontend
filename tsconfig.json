@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "jsx": "react",
+    "target": "es5",
+    "module": "esnext",
+    "moduleResolution": "node",
+    "lib": ["es6", "dom"],
+    "rootDir": "./src",
+    "declaration": true,
+    "declarationDir": "./dist",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
+    "paths": {
+      "@fonts/*": ["src/assets/fonts/*"],
+      "@styles/*": ["src/styles/*"]
+    },
+  },
+  "include": ["./src"],
+  "exclude": ["node_modules", "**/*.story.*", "**/tests", "dist"]
+}
