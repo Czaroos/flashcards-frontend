@@ -11,45 +11,45 @@ export const GlobalStyle = createGlobalStyle`
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 100;
-  src: local('Roboto Thin'), local('Roboto-Thin'),
-       url(${Roboto100}) format('woff2');
+  src: url(${Roboto100}) format('woff2');
 }
 /* roboto-300 - latin */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 300;
-  src: local('Roboto Light'), local('Roboto-Light'),
-       url(${Roboto300}) format('woff2');
+  src: url(${Roboto300}) format('woff2');
 }
 /* roboto-regular - latin */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 400;
-  src: local('Roboto'), local('Roboto-Regular'),
-       url(${Roboto400}) format('woff2');
+  src: url(${Roboto400}) format('woff2');
 }
 /* roboto-italic - latin */
 @font-face {
   font-family: 'Roboto';
   font-style: italic;
   font-weight: 400;
-  src: local('Roboto Italic'), local('Roboto-Italic'),
-       url(${Roboto400Italic}) format('woff2');
+  src: url(${Roboto400Italic}) format('woff2');
 }
 /* roboto-500 - latin */
 @font-face {
   font-family: 'Roboto';
   font-style: normal;
   font-weight: 500;
-  src: local('Roboto Medium'), local('Roboto-Medium'),
-       url(${Roboto500}) format('woff2');
+  src: url(${Roboto500}) format('woff2');
 }
   :root{
     /* Colours */
-    --white: #ffffff;
-    --black: #000000;
+    --white: #FFF;
+    --black: #000;
+    --gunmetal: #223843;
+    --cultured: #EFF1F3;
+    --light-gray: #DBD3D8;
+    --desert-sand: #D8B4A0;
+    --terra-cotta: #D77A61;
 
     /* Font weight */
     --very-thin: 100;
