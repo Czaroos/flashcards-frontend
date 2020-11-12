@@ -13,9 +13,11 @@
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
-      "@fonts/*": ["/assets/fonts/*"],
-      "@styles/*": ["/styles/*"],
-      "@components": ["/components"]
+      "@fonts/*": ["assets/fonts/*"],
+      "@styles/*": ["styles/*"],
+      "@components": ["components"],
+      "@firebase": ["firebase"],
+      "@core/*": ["core/*"],
     },
   },
   "include": ["./src"],

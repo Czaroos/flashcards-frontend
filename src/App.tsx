@@ -1,12 +1,31 @@
 import React from "react";
+import { BrowserRouter } from "react-router-dom";
+
+import AuthProvider, { useAuthProvider } from "./core/auth/AuthProvider";
+
 import { GlobalStyle } from "@styles/GlobalStyle";
 
 const App = () => {
   return (
-    <>
-      <GlobalStyle />
-      <h1>Entry point</h1>
-    </>
+    <BrowserRouter>
+      <AuthProvider>
+        <GlobalStyle />
+        <Mock />
+      </AuthProvider>
+    </BrowserRouter>
+  );
+};
+
+const Mock = () => {
+  const { user, signInWithGoogle } = useAuthProvider();
+
+  return (
+    <div onClick={signInWithGoogle}>
+      <>
+        SIGN IN WITH GOOGLE
+        {console.log(user)}
+      </>
+    </div>
   );
 };
 
