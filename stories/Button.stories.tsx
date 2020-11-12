@@ -6,7 +6,7 @@ import { Button } from "@components";
 storiesOf("Our button", module)
   .add("default", () => (
     <CenteredContainer style={{ background: "var(--secondary)" }}>
-      <Button onClick={() => alert("clicked default button")}>
+      <Button variant="default" onClick={() => alert("clicked default button")}>
         <h3>SIGN UP</h3>
       </Button>
     </CenteredContainer>
