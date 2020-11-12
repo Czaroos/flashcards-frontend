@@ -50,6 +50,7 @@ export const GlobalStyle = createGlobalStyle`
     /* Colours */
     --white: #ffffff;
     --black: #000000;
+    --grey: #c3c3c3;
     --details: #D77A61;
     --primary-light: #EEF1EF;
     --primary: #C3CBD5;
