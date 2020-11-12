@@ -8,10 +8,16 @@ export const Button = ({
   variant = "default",
   onClick,
   children,
+  width = "auto",
   ...props
 }: ButtonProps) => {
   return (
-    <ButtonContainer onClick={onClick} variant={variant} {...props}>
+    <ButtonContainer
+      onClick={onClick}
+      variant={variant}
+      width={width}
+      {...props}
+    >
       {children}
     </ButtonContainer>
   );
