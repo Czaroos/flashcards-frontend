@@ -6,19 +6,19 @@
     "module": "esnext",
     "moduleResolution": "node",
     "lib": ["es6", "dom"],
-    "rootDir": "./src",
+    "rootDir": ".",
     "declaration": true,
     "declarationDir": "./dist",
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
-      "@fonts/*": ["/assets/fonts/*"],
-      "@styles/*": ["/styles/*"],
-      "@components": ["/components"],
-      "@images/*": ["/assets/images/*"]
+      "@fonts/*": ["assets/fonts/*"],
+      "@styles/*": ["styles/*"],
+      "@components": ["components"],
+      "@images/*": ["assets/images/*"]
     },
   },
-  "include": ["./src"],
+  "include": ["./src", "./stories"],
   "exclude": ["node_modules", "**/*.story.*", "**/tests", "dist"]
 }
