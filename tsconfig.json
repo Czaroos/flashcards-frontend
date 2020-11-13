@@ -16,6 +16,8 @@
       "@fonts/*": ["assets/fonts/*"],
       "@styles/*": ["styles/*"],
       "@components": ["components"],
+      "@firebase": ["firebase"],
+      "@core/*": ["core/*"],
       "@images/*": ["assets/images/*"]
     },
   },
