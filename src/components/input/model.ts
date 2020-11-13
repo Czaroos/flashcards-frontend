@@ -3,7 +3,7 @@ export interface Input {
 }
 
 export interface InputProps extends Input {
-    onChange?(): void;
+    onChange?: (e: { target: { value: string } }) => void;
     value?: string,
     placeholder?: string
 }
