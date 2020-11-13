@@ -6,7 +6,7 @@ import { GoogleIcon } from "@icons";
 
 storiesOf("Icon Button", module).add("Google", () => (
   <CenteredContainer>
-    <IconButton onClick={() => alert("clicked google button")}>
+    <IconButton isGoogle={true} onClick={() => alert("clicked google button")}>
       <GoogleIcon />
     </IconButton>
   </CenteredContainer>

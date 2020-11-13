@@ -10,8 +10,13 @@ export const IconButtonContainer = styled.div<SVGProps>`
   width: 60px;
   border-radius: 50%;
   padding: 12px;
-  background: var(--primary-light);
-  border: 1px solid var(--primary-dark);
+  background: transparent;
+
+  border-right: ${({ isGoogle }) => isGoogle && "1px solid #4285f4"};
+  border-bottom: ${({ isGoogle }) => isGoogle && "1px solid #34a853"};
+  border-left: ${({ isGoogle }) => isGoogle && "1px solid #fbbc04"};
+  border-top: ${({ isGoogle }) => isGoogle && "1px solid #ea4335"};
+
   cursor: pointer;
 
   > svg {
@@ -21,8 +26,7 @@ export const IconButtonContainer = styled.div<SVGProps>`
   }
 
   &:hover {
-    border: 1px solid var(--primary-dark);
-    background: var(--primary);
+    background: var(--primary-light);
 
     > svg {
       opacity: 1;
