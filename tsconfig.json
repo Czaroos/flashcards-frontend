@@ -15,7 +15,8 @@
     "paths": {
       "@fonts/*": ["assets/fonts/*"],
       "@styles/*": ["styles/*"],
-      "@components": ["components"]
+      "@components": ["components"],
+      "@images/*": ["assets/images/*"]
     },
   },
   "include": ["./src", "./stories"],

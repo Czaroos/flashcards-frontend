@@ -66,12 +66,15 @@ export const GlobalStyle = createGlobalStyle`
     height: 100%;
     width: 100%;
   }
-    *{
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: "Roboto";
-        outline: none;
+  * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Roboto";
+      outline: none;
+      transition: all 0.25s;
+      text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
     }
 `;
 

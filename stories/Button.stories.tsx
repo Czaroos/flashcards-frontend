@@ -3,10 +3,10 @@ import { storiesOf } from "@storybook/react";
 import { CenteredContainer } from "./style";
 import { Button } from "@components";
 
-storiesOf("Our button", module)
+storiesOf("Button", module)
   .add("default", () => (
     <CenteredContainer style={{ background: "var(--secondary)" }}>
-      <Button variant="default" onClick={() => alert("clicked default button")}>
+      <Button onClick={() => alert("clicked default button")}>
         <h3>SIGN UP</h3>
       </Button>
     </CenteredContainer>
