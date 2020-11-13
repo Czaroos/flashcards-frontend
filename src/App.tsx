@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import AuthProvider, { useAuthProvider } from "./core/auth/AuthProvider";
 
 import { GlobalStyle } from "@styles/GlobalStyle";
+import Home from "modules/home";
 
 const App = () => {
   return (
@@ -20,11 +21,8 @@ const Mock = () => {
   const { user, signInWithGoogle } = useAuthProvider();
 
   return (
-    <div onClick={signInWithGoogle}>
-      <>
-        SIGN IN WITH GOOGLE
-        {console.log(user)}
-      </>
+    <div>
+      <Home />
     </div>
   );
 };

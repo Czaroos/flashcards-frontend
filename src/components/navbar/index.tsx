@@ -26,10 +26,10 @@ export const Navbar = () => {
         alt="logo"
         onClick={() => alert("redirect to home")}
       />
-      <nav>
+      {/* <nav>
         <Button variant="transparent">HOME</Button>
         <Button variant="transparent">ABOUT</Button>
-      </nav>
+      </nav> */}
       <Actions>
         <Button variant="transparent" onClick={handleSignIn}>
           SIGN IN
