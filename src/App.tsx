@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider, { useAuthProvider } from "@core/auth";
+import AuthProvider from "@core/auth";
 
 import { GlobalStyle } from "@styles/GlobalStyle";
 import Home from "modules/home";
@@ -11,17 +11,9 @@ const App = () => {
     <BrowserRouter>
       <AuthProvider>
         <GlobalStyle />
-        <Mock />
+        <Home />
       </AuthProvider>
     </BrowserRouter>
-  );
-};
-
-const Mock = () => {
-  return (
-    <>
-      <Home />
-    </>
   );
 };
 
