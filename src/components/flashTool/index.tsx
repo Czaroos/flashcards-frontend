@@ -13,9 +13,7 @@ export const FlashTool = () => {
           </p>
         </div>
         <div>
-          tutaj dalibyśmy może tę karuzelę ilustracji, które może
-          przedstawiałyby pokrótce jak wygląda edytor fiszek i jak łatwo je
-          dodać
+          <div className="carousel"></div>
         </div>
       </section>
     </FlashToolContainer>

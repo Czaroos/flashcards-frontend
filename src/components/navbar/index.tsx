@@ -21,25 +21,32 @@ export const Navbar = () => {
 
   return (
     <NavbarContainer>
-      <img
-        src={LogoWhite}
-        alt="logo"
-        onClick={() => alert("redirect to home")}
-      />
-      {/* <nav>
-        <Button variant="transparent">HOME</Button>
-        <Button variant="transparent">ABOUT</Button>
-      </nav> */}
+      <img src={LogoWhite} alt="logo" onClick={() => alert("redirect to /")} />
+      <nav>
+        <Button onClick={() => alert("redirect to /")} variant="transparent">
+          Home
+        </Button>
+        <Button
+          onClick={() => alert("redirect to /about")}
+          variant="transparent"
+        >
+          About
+        </Button>
+      </nav>
       <Actions>
         <Button variant="transparent" onClick={handleSignIn}>
           SIGN IN
         </Button>
         <Button width="190px" onClick={handleSignUp}>
-          SIGN UP
+          <b>SIGN UP</b>
         </Button>
       </Actions>
 
-      <Sidebar>Icon Button</Sidebar>
+      <Sidebar>
+        <div />
+        <div />
+        <div />
+      </Sidebar>
     </NavbarContainer>
   );
 };

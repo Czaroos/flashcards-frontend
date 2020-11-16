@@ -5,12 +5,14 @@ export const Benefits = () => {
   return (
     <BenefitsContainer>
       <section>
-        <div>Karuzela screenów po prostu flashcardów czy coś.</div>
+        <div>
+          <div className="carousel"></div>
+        </div>
         <div>
           <h2>Why flashcards?</h2>
           <p>
-            Są takie swietne blabla, pomagają w czymstam. Karuzela screenów po
-            prostu flashcardów.
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh
+            augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem.
           </p>
         </div>
       </section>

@@ -1,5 +1,5 @@
 import { Button } from "@components";
-import React, { Children } from "react";
+import React from "react";
 import { CreateFlashcardContainer } from "./style";
 
 export const CreateFlashcard = () => {

@@ -5,9 +5,17 @@ export const FooterContainer = styled.div`
   align-items: center;
   grid-template-columns: 1fr max(1200px) 1fr;
   width: 100%;
-  height: 350px;
+  padding: 150px 0;
   color: var(--primary-light);
   background: var(--secondary);
+
+  @media (max-width: 1250px) {
+    grid-template-columns: 1fr 30fr 1fr;
+  }
+
+  @media (max-width: 960px) {
+    grid-template-columns: 1fr 5fr 1fr;
+  }
 
   section {
     grid-column: 2/3;
