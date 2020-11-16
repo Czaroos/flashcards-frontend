@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-import { Button, SignIn } from "@components";
+import { Button, SignIn, SignUp } from "@components";
 
 import { useAuthProvider } from "@core/auth";
 
@@ -12,21 +12,21 @@ export const Navbar = () => {
   const [signIn, setSignIn] = useState(false);
   const [signUp, setSignUp] = useState(false);
 
-  const { user } = useAuthProvider();
+  const { user, logOut } = useAuthProvider();
 
   const handleSignIn = useCallback(() => {
     setSignIn(true);
   }, []);
 
   const handleSignUp = useCallback(() => {
-    // change it to sign up logic
-    alert("sign up");
+    setSignUp(true);
   }, []);
 
   // Add links after routing is added
 
   return (
     <>
+      {signUp && <SignUp setOpen={setSignUp} open={signUp} />}
       {signIn && <SignIn setOpen={setSignIn} open={signIn} />}
       <NavbarContainer>
         <img
@@ -47,7 +47,12 @@ export const Navbar = () => {
         </nav>
         <Actions>
           {user ? (
-            <h3>You are logged in as {user.displayName}</h3>
+            <>
+              <h3>You are logged in as {user.displayName}</h3>
+              <Button width="190px" onClick={logOut}>
+                LOG OUT
+              </Button>
+            </>
           ) : (
             <>
               <Button variant="transparent" onClick={handleSignIn}>
