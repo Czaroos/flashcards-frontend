@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { ButtonVariant } from "./model";
 
 export const ButtonContainer = styled.div<ButtonVariant>`
-  min-width: ${({ width }) => width};
+  width: ${({ width }) => width};
   padding: 12px 16px;
   margin: 16px;
   border-radius: 10px;
