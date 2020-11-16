@@ -1,7 +1,9 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider, { useAuthProvider } from "./core/auth/AuthProvider";
+import AuthProvider, { useAuthProvider } from "@core/auth/AuthProvider";
+
+import { Navbar } from "@components";
 
 import { GlobalStyle } from "@styles/GlobalStyle";
 
@@ -17,16 +19,7 @@ const App = () => {
 };
 
 const Mock = () => {
-  const { user, signInWithGoogle } = useAuthProvider();
-
-  return (
-    <div onClick={signInWithGoogle}>
-      <>
-        SIGN IN WITH GOOGLE
-        {console.log(user)}
-      </>
-    </div>
-  );
+  return <Navbar />;
 };
 
 export default App;
