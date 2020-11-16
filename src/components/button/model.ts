@@ -8,6 +8,6 @@ export interface ButtonVariant {
 }
 
 export interface ButtonProps extends ButtonVariant {
-  onClick(): void;
+  onClick?(e?: React.MouseEvent): void;
   children: ReactNode;
 }

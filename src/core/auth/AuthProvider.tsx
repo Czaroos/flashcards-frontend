@@ -7,6 +7,8 @@ export interface State {
   user: User | null;
   signInWithGoogle?(): void;
   logOut?(): void;
+  logIn?(email: string, password: string): void;
+  signUp?(email: string, password: string, displayName: string): void;
 }
 
 export interface Props extends RouteComponentProps {
@@ -60,6 +62,27 @@ class Provider extends React.Component<Props, typeof STATE> {
     }
   };
 
+  logIn = async (email: string, password: string) => {
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+    } catch {
+      this.setState({ ...STATE });
+    }
+  };
+
+  signUp = async (email: string, password: string, displayName: string) => {
+    try {
+      const { user } = await auth.createUserWithEmailAndPassword(
+        email,
+        password
+      );
+
+      await createUser(user, { displayName });
+    } catch {
+      this.setState({ ...STATE });
+    }
+  };
+
   componentWillUnmount() {
     this._unsubscribeFromAuth();
   }
@@ -67,6 +90,8 @@ class Provider extends React.Component<Props, typeof STATE> {
   readonly state: typeof STATE = {
     ...STATE,
     logOut: this.logOut,
+    logIn: this.logIn,
+    signUp: this.signUp,
     signInWithGoogle,
   };
 

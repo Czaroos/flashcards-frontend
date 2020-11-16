@@ -6,6 +6,6 @@ export interface SVGProps {
 }
 
 export interface IconButtonProps extends SVGProps {
-  onClick(): void;
+  onClick(e?: React.MouseEvent): void;
   children: ReactNode;
 }

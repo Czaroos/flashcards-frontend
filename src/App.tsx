@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider, { useAuthProvider } from "@core/auth/AuthProvider";
+import AuthProvider, { useAuthProvider } from "@core/auth";
 
 import { Navbar } from "@components";
 
@@ -19,7 +19,14 @@ const App = () => {
 };
 
 const Mock = () => {
-  return <Navbar />;
+  const { user } = useAuthProvider();
+
+  return (
+    <>
+      {console.log(user)}
+      <Navbar />
+    </>
+  );
 };
 
 export default App;
