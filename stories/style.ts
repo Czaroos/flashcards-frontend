@@ -15,3 +15,9 @@ export const AbsoluteItemContainer = styled.div`
   width: 800px;
   position: relative;
 `;
+
+export const Column = styled.div`
+  padding-top:10%;
+  text-align: center;
+  height: 100%;
+`;
