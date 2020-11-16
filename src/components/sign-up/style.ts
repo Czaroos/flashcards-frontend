@@ -2,11 +2,11 @@ import styled from "styled-components";
 
 import { Button } from "@components";
 
-export const SignInContainer = styled.div`
+export const SignUpContainer = styled.div`
   display: flex;
   flex-flow: column;
   width: 600px;
-  border: 1px solid var(--secondary);
+  border: 1px solid var(--details);
   background: var(--primary-light);
 `;
 
@@ -16,7 +16,7 @@ export const Header = styled.header`
   color: var(--white);
   width: 100%;
   padding: 32px;
-  background: var(--secondary);
+  background: var(--details);
 `;
 
 export const Content = styled.div`
@@ -63,19 +63,19 @@ export const Google = styled.div`
   }
 `;
 
-export const SubmitButton = styled(Button)`
-  background: var(--secondary);
-`;
-
 export const Inputs = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   width: 100%;
-  height: 360px;
+  height: 580px;
   border: 1px solid var(--secondary);
   border-radius: 4px;
-  padding: 12px;
+  padding: 16px;
   margin: 24px 0;
+
+  > h3 {
+    color: var(--grey);
+  }
 `;

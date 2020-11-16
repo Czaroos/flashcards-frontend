@@ -1,10 +1,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { CenteredContainer } from "./style";
-import { SignIn } from "@components";
+import { SignUp } from "@components";
 
-storiesOf("Sign in", module).add("Modal content", () => (
+storiesOf("Sign up", module).add("Modal content", () => (
   <CenteredContainer>
-    <SignIn />
+    <SignUp setOpen={() => {}} open={true} />
   </CenteredContainer>
 ));
