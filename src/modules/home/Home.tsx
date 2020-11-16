@@ -1,11 +1,5 @@
-import {
-  Navbar,
-  Footer,
-  CreateFlashcard,
-  FlashTool,
-  Features,
-  Benefits,
-} from "@components";
+import { Navbar, Footer } from "@components";
+import { CreateFlashcard, FlashTool, Features, Benefits } from "./sections";
 import React from "react";
 
 const Home = () => {
