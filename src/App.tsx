@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider, { useAuthProvider } from "./core/auth/AuthProvider";
+import AuthProvider, { useAuthProvider } from "@core/auth";
 
 import { GlobalStyle } from "@styles/GlobalStyle";
 import Home from "modules/home";
@@ -18,12 +18,10 @@ const App = () => {
 };
 
 const Mock = () => {
-  const { user, signInWithGoogle } = useAuthProvider();
-
   return (
-    <div>
+    <>
       <Home />
-    </div>
+    </>
   );
 };
 
