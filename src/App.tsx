@@ -1,31 +1,19 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider, { useAuthProvider } from "@core/auth";
-
-import { Navbar } from "@components";
+import AuthProvider from "@core/auth";
 
 import { GlobalStyle } from "@styles/GlobalStyle";
+import Home from "modules/home";
 
 const App = () => {
   return (
     <BrowserRouter>
       <AuthProvider>
         <GlobalStyle />
-        <Mock />
+        <Home />
       </AuthProvider>
     </BrowserRouter>
-  );
-};
-
-const Mock = () => {
-  const { user } = useAuthProvider();
-
-  return (
-    <>
-      {console.log(user)}
-      <Navbar />
-    </>
   );
 };
 
