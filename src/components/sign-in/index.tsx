@@ -21,7 +21,7 @@ export const SignIn = ({ setOpen, open }: SignInProps) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const { signInWithGoogle } = useAuthProvider();
+  const { signInWithGoogle, logIn } = useAuthProvider();
 
   const handleEmailChange = useCallback((e: { target: { value: string } }) => {
     setEmail(e.target.value);
@@ -33,6 +33,24 @@ export const SignIn = ({ setOpen, open }: SignInProps) => {
     },
     []
   );
+
+  const handleGoogleSignIn = useCallback(async (e: React.MouseEvent) => {
+    await signInWithGoogle!();
+    setOpen(false);
+  }, []);
+
+  const handleSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    //TODO: complete validation
+    if (email == "" || password == "") {
+      alert("All fields must be filled in.");
+      return;
+    }
+
+    await logIn!(email, password);
+    setOpen(false);
+  };
 
   return (
     <Modal setOpen={setOpen} open={open}>
@@ -50,7 +68,7 @@ export const SignIn = ({ setOpen, open }: SignInProps) => {
               <span>l</span>
               <span>e</span>!
             </h2>
-            <IconButton isGoogle={true} onClick={signInWithGoogle!}>
+            <IconButton isGoogle={true} onClick={handleGoogleSignIn}>
               <GoogleIcon />
             </IconButton>
           </Google>
@@ -72,10 +90,7 @@ export const SignIn = ({ setOpen, open }: SignInProps) => {
               onChange={handlePasswordChange}
             />
           </Inputs>
-          <SubmitButton
-            width="100%"
-            onClick={() => alert("login logic when provided")}
-          >
+          <SubmitButton width="100%" onClick={handleSubmit}>
             SUBMIT
           </SubmitButton>
         </Content>

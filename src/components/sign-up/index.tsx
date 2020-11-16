@@ -16,7 +16,7 @@ export const SignUp = ({ setOpen, open }: SignUpProps) => {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [displayName, setDisplayName] = useState("");
 
-  const { signInWithGoogle } = useAuthProvider();
+  const { signInWithGoogle, signUp } = useAuthProvider();
 
   const handleEmailChange = useCallback((e: { target: { value: string } }) => {
     setEmail(e.target.value);
@@ -43,6 +43,36 @@ export const SignUp = ({ setOpen, open }: SignUpProps) => {
     []
   );
 
+  const handleGoogleSignUp = useCallback(async (e: React.MouseEvent) => {
+    await signInWithGoogle!();
+    setOpen(false);
+  }, []);
+
+  const handleSubmit = async (e: React.MouseEvent) => {
+    e.preventDefault();
+
+    //TODO: provide complete validation
+    if (
+      displayName == "" ||
+      email == "" ||
+      password == "" ||
+      confirmPassword == ""
+    ) {
+      alert("Every field must be filled in.");
+      return;
+    }
+
+    //TODO: provide complete validation
+    if (password !== confirmPassword) {
+      alert("Passwords don't match.");
+      return;
+    }
+
+    //TODO: handle errors (email exists etc.)
+    await signUp!(email, password, displayName);
+    setOpen(false);
+  };
+
   return (
     <Modal setOpen={setOpen} open={open}>
       <SignUpContainer>
@@ -59,7 +89,7 @@ export const SignUp = ({ setOpen, open }: SignUpProps) => {
               <span>l</span>
               <span>e</span>!
             </h2>
-            <IconButton isGoogle={true} onClick={signInWithGoogle!}>
+            <IconButton isGoogle={true} onClick={handleGoogleSignUp}>
               <GoogleIcon />
             </IconButton>
           </Google>
@@ -96,10 +126,7 @@ export const SignUp = ({ setOpen, open }: SignUpProps) => {
               onChange={handleConfirmPasswordChange}
             />
           </Inputs>
-          <Button
-            width="100%"
-            onClick={() => alert("sign up logic when provided")}
-          >
+          <Button width="100%" onClick={handleSubmit}>
             SUBMIT
           </Button>
         </Content>
