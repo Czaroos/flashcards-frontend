@@ -71,11 +71,15 @@ export const Inputs = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   height: 360px;
   border: 1px solid var(--secondary);
   border-radius: 4px;
-  padding: 12px;
+  padding: 16px;
   margin: 24px 0;
+
+  > h3 {
+    color: var(--grey);
+  }
 `;

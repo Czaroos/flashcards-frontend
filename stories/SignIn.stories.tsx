@@ -5,6 +5,6 @@ import { SignIn } from "@components";
 
 storiesOf("Sign in", module).add("Modal content", () => (
   <CenteredContainer>
-    <SignIn />
+    <SignIn setOpen={() => {}} open={true} />
   </CenteredContainer>
 ));
