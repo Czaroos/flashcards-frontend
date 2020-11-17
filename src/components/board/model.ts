@@ -1,4 +1,4 @@
-type Variant = "tiny" | "medium" | "large"
+export type Variant = "tiny" | "medium" | "large"
 
 export interface BoardProps {
     items: Item[]

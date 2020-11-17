@@ -4,7 +4,7 @@
   "description": "Flashcards app",
   "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --progress",
+    "start": "webpack-dev-server --port 3030 --hot --progress",
     "build": "webpack --mode production",
     "test": "jest",
     "storybook": "start-storybook -p 6006 --no-dll",

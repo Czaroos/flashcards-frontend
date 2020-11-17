@@ -36,12 +36,13 @@ export const Flashcard = ({
 
     return (
         <FlashcardContainer onClick={onClick} variant={variant}>
-            <ChangeButton onClick={() => changePage()} variant="transparent">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/565/565249.svg"
-                    height="20"
-                    width="20" />
-            </ChangeButton>
-
+            <NoDrag>
+                <ChangeButton onClick={() => changePage()} variant="transparent">
+                    <img src="https://www.flaticon.com/svg/static/icons/svg/565/565249.svg"
+                        height="20"
+                        width="20" />
+                </ChangeButton>
+            </NoDrag>
             {page
                 ? <>
                     <p>Question</p>
@@ -52,11 +53,13 @@ export const Flashcard = ({
                     <p>{currentAnswer}</p>
                 </>}
 
-            <EditButton onClick={() => setOpen(true)} variant="transparent">
-                <img src="https://www.flaticon.com/svg/static/icons/svg/598/598234.svg"
-                    height="18"
-                    width="18" />
-            </EditButton>
+            <NoDrag>
+                <EditButton onClick={() => setOpen(true)} variant="transparent">
+                    <img src="https://www.flaticon.com/svg/static/icons/svg/598/598234.svg"
+                        height="18"
+                        width="18" />
+                </EditButton>
+            </NoDrag>
 
             <Modal open={open} setOpen={setOpen}>
                 {page
@@ -78,3 +81,11 @@ export const Flashcard = ({
         </FlashcardContainer>
     );
 };
+
+const NoDrag = (props: any) => {
+    return (
+        <div onMouseDown={(e) => { e.stopPropagation() }}>
+            {props.children}
+        </div>
+    )
+}

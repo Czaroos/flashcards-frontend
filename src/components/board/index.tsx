@@ -1,11 +1,11 @@
 import React from "react"
-import GridLayout from 'react-grid-layout';
+import GridLayout from "react-grid-layout";
 import { BoardProps } from "./model"
 import { COLUMNS, ROW_HEIGHTS, WIDTH, SIZE } from "./utils"
 
 import { Flashcard } from "@components"
 
-// import "./style.css";
+import { StyledGridLayout } from "./style"
 
 export const Board = ({ items }: BoardProps) => {
 
@@ -14,7 +14,7 @@ export const Board = ({ items }: BoardProps) => {
     }
 
     return (
-        <GridLayout
+        <StyledGridLayout
             onDragStop={e => handleOnDragStop(e)}
             cols={COLUMNS}
             rowHeight={ROW_HEIGHTS}
@@ -31,15 +31,15 @@ export const Board = ({ items }: BoardProps) => {
                             x: item.coords.x,
                             y: item.coords.y,
                             w: SIZE[index].w,
-                            h: SIZE[index].h
+                            h: SIZE[index].h,
                         }}>
                         <Flashcard {...item} />
                     </div>
                 )
             })}
-        </GridLayout>
+        </StyledGridLayout>
     )
 
 }
 
-export { Item } from "./model";
+export { Item, Variant } from "./model";
