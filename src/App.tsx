@@ -1,18 +1,12 @@
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
 
-import AuthProvider from "@core/auth";
-
-import { GlobalStyle } from "@styles/GlobalStyle";
-import Home from "modules/home";
+import { Modules } from "./modules/Modules";
 
 const App = () => {
   return (
     <BrowserRouter>
-      <AuthProvider>
-        <GlobalStyle />
-        <Home />
-      </AuthProvider>
+      <Modules />
     </BrowserRouter>
   );
 };
