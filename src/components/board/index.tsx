@@ -5,7 +5,7 @@ import { COLUMNS, ROW_HEIGHTS, WIDTH, SIZE } from "./utils"
 
 import { Flashcard } from "@components"
 
-import "./style.css";
+// import "./style.css";
 
 export const Board = ({ items }: BoardProps) => {
 
