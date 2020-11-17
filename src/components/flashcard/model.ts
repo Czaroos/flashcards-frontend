@@ -8,5 +8,9 @@ export interface FlashcardProps extends FlashcardVariant {
     onClick?(): void;
     answer?: string,
     question?: string,
-    id: string
+    id: string,
+    coords: {
+        x: number,
+        y: number
+    }
 }
