@@ -34,14 +34,19 @@ class Provider extends React.Component<Props, typeof STATE> {
             >
           ) => {
             const { email, displayName, createdAt } = snapshot.data()!;
-            this.setState({
-              user: {
-                id: snapshot.id,
-                email,
-                displayName,
-                createdAt,
+            this.setState(
+              {
+                user: {
+                  id: snapshot.id,
+                  email,
+                  displayName,
+                  createdAt,
+                },
               },
-            });
+              () => {
+                this.props.history.push(`/dashboard/${snapshot.id}`);
+              }
+            );
           }
         );
       } else {
@@ -56,7 +61,9 @@ class Provider extends React.Component<Props, typeof STATE> {
     try {
       await auth.signOut();
 
-      this.setState({ user: null });
+      this.setState({ user: null }, () => {
+        this.props.history.push(`/`);
+      });
     } catch {
       this.setState({ ...STATE });
     }
