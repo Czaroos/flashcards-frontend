@@ -23,6 +23,10 @@ export const FeaturesContainer = styled.div`
     justify-content: space-evenly;
     text-align: center;
 
+    img{
+      margin-left: 10px;
+    }
+
     @media (max-width: 960px) {
       flex-direction: column;
       align-items: center;
@@ -38,8 +42,11 @@ export const FeaturesContainer = styled.div`
       }
 
       h2 {
-        margin: 15px 0;
+        margin-bottom: 20px;
         font-size: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
       }
 
       p {

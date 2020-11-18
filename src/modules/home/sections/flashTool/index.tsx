@@ -1,4 +1,7 @@
 import React from "react";
+
+import FlashToolImg from "@images/flashtool.png"
+
 import { FlashToolContainer } from "./style";
 
 export const FlashTool = () => {
@@ -13,7 +16,7 @@ export const FlashTool = () => {
           </p>
         </div>
         <div>
-          <div className="carousel"></div>
+          <img src={FlashToolImg} width="350" />
         </div>
       </section>
     </FlashToolContainer>
