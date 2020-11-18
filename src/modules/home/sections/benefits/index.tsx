@@ -1,4 +1,7 @@
 import React from "react";
+
+import QuestionMark from "@images/qmark.png"
+
 import { BenefitsContainer } from "./style";
 
 export const Benefits = () => {
@@ -6,13 +9,14 @@ export const Benefits = () => {
     <BenefitsContainer>
       <section>
         <div>
-          <div className="carousel"></div>
+          <img src={QuestionMark} width={180} />
         </div>
         <div>
           <h2>Why flashcards?</h2>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin nibh
-            augue, suscipit a, scelerisque sed, lacinia in, mi. Cras vel lorem.
+            Have you read what is above me? No?
+            Eh ... Listen, FlashYourCard - simple, fast, intuitive.
+            I won't tell you more, go up!  I was kidding, and maybe not... well, go ahead.
           </p>
         </div>
       </section>

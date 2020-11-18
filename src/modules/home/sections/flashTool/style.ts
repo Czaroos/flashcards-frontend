@@ -17,6 +17,11 @@ export const FlashToolContainer = styled.div`
     grid-template-columns: 1fr 5fr 1fr;
   }
 
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
   section {
     grid-column: 2/3;
     display: flex;
@@ -44,18 +49,6 @@ export const FlashToolContainer = styled.div`
         font-size: 25px;
       }
 
-      .carousel {
-        background-image: url('https://theapprenticeacademy.co.uk/wp-content/uploads/2016/05/flashcards.png');
-        background-position: center;
-        background-repeat: no-repeat;
-        height: 200px;
-        width: 300px;
-        margin-left: auto;
-
-        @media (max-width: 960px) {
-          margin: auto;
-        }
-      }
     } 
   }
 `;

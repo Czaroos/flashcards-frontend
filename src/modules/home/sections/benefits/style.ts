@@ -9,6 +9,11 @@ export const BenefitsContainer = styled.div`
   color: var(--secondary);
   background: var(--primary);
 
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+
   @media (max-width: 1250px) {
     grid-template-columns: 1fr 30fr 1fr;
   }
