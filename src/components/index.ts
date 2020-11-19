@@ -1,3 +1,4 @@
+export * from "./avatar";
 export * from "./board";
 export * from "./button";
 export * from "./flashcard";

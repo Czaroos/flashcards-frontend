@@ -1,6 +1,6 @@
 import React, { useCallback, useState } from "react";
 
-import { Button, SignIn, SignUp } from "@components";
+import { Avatar, Button, SignIn, SignUp } from "@components";
 
 import { useAuthProvider } from "@core/auth";
 
@@ -48,7 +48,10 @@ export const Navbar = () => {
         <Actions>
           {user ? (
             <>
-              <h3>You are logged in as {user.displayName}</h3>
+              <Avatar
+                displayName={user.displayName}
+                onClick={() => alert("redirect to /dashboard/userId")}
+              />
               <Button width="190px" onClick={logOut}>
                 LOG OUT
               </Button>
