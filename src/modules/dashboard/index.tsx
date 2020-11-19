@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useAuthProvider } from "@core/auth";
 
-import { Board, Item, Variant } from "@components";
+import { Board, Item, Variant, Categories, CategoriesItem } from "@components";
 
 import { StyledButton, DashboardContainer } from "./style";
 import { Redirect } from "react-router";
@@ -9,6 +9,12 @@ import { Redirect } from "react-router";
 const Dashboard = () => {
   const { user } = useAuthProvider();
   const [items, setItems] = useState<Item[]>([]);
+  const [categories, setCategories] = useState<CategoriesItem[]>([]);
+
+  useEffect(() => {
+    //implement fetch categories
+    //implement fetch current board
+  }, [])
 
   const getIndex = () => {
     let max = -1;
@@ -25,6 +31,7 @@ const Dashboard = () => {
     <>
       {user ? (
         <DashboardContainer>
+          <Categories items={categories} />
           <StyledButton onClick={() => addFlashcard("tiny")}>
             Add tiny flashcard
           </StyledButton>
@@ -37,8 +44,8 @@ const Dashboard = () => {
           <Board items={items} />
         </DashboardContainer>
       ) : (
-        <Redirect to="/" />
-      )}
+          <Redirect to="/" />
+        )}
     </>
   );
 };

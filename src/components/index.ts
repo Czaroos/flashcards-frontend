@@ -1,5 +1,6 @@
 export * from "./board";
 export * from "./button";
+export * from "./categories";
 export * from "./flashcard";
 export * from "./modal";
 export * from "./icon-button";
