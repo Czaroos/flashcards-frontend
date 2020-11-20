@@ -1,10 +1,17 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import { ModalContainer } from "./style";
 
 import { ModalProps } from "./model";
 
 export const Modal = ({ open, setOpen, children }: ModalProps) => {
+  useEffect(() => {
+    document.body.style.overflow = "hidden";
+    return function () {
+      document.body.style.overflow = "auto";
+    };
+  }, []);
+
   const handleClose = useCallback(() => {
     setOpen(false);
   }, []);

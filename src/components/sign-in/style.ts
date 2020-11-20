@@ -3,8 +3,8 @@ import styled from "styled-components";
 import { Button } from "@components";
 
 export const SignInContainer = styled.div`
-  display: flex;
-  flex-flow: column;
+  left: calc(50% - 300px);
+  top: 60px;
   width: 600px;
   border: 1px solid var(--secondary);
   background: var(--primary-light);
