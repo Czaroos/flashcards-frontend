@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 
 import { Avatar, Button, SignIn, SignUp } from "@components";
 
@@ -14,6 +15,8 @@ export const Navbar = () => {
 
   const { user, logOut } = useAuthProvider();
 
+  const history = useHistory();
+
   const handleSignIn = useCallback(() => {
     setSignIn(true);
   }, []);
@@ -21,8 +24,6 @@ export const Navbar = () => {
   const handleSignUp = useCallback(() => {
     setSignUp(true);
   }, []);
-
-  // Add links after routing is added
 
   return (
     <>
@@ -50,7 +51,7 @@ export const Navbar = () => {
             <>
               <Avatar
                 displayName={user.displayName}
-                onClick={() => alert("redirect to /dashboard/userId")}
+                onClick={() => history.push(`/dashboard/${user.id}`)}
               />
               <Button width="190px" onClick={logOut}>
                 LOG OUT
