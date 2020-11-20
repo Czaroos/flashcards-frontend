@@ -1,11 +1,13 @@
-type Variant = "tiny" | "medium" | "large";
+export type Variant = "tiny" | "medium" | "large";
+export type Color = "red" | "blue" | "pink" | "green" | "gray";
 
 export interface FlashcardVariant {
-    variant?: Variant;
+    variant?: Variant,
+    color?: Color,
 }
 
 export interface FlashcardProps extends FlashcardVariant {
-    onClick?(): void;
+    onClick?(): void,
     answer?: string,
     question?: string,
     id: string,

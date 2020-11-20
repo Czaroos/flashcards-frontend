@@ -12,13 +12,22 @@ export const FlashcardContainer = styled.div<FlashcardVariant>`
     width: ${({ variant }) => variant === "large" && "400px"};
     height: ${({ variant }) => variant === "large" && "200px"};
     border-radius: 15px;
-    position: absolute;
+    position: relative;
     padding: 5px;
-    background-color: var(--primary);
+    background: ${({ color }) => color === "gray" && "var(--primary)"};
+    background: ${({ color }) => color === "red" && "#f68181"};
+    background: ${({ color }) => color === "blue" && "#9889d2"};
+    background: ${({ color }) => color === "pink" && "#eecef5"};
+    background: ${({ color }) => color === "green" && "#83ff8f"};
     display: grid;
     justify-content: center;
     align-items: center;
     text-align: center;
+    cursor: grab;
+
+    &:active{
+        cursor: grabbing;
+    }
 `;
 
 export const ModalDiv = styled.div`

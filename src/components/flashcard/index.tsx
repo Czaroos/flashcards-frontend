@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Input, Modal } from "@components"
 
-import { FlashcardProps } from "./model";
+import { FlashcardProps, Color } from "./model";
 
 import {
     FlashcardContainer,
@@ -10,9 +10,12 @@ import {
     EditButton
 } from "./style";
 
+const COLORS: Color[] = ["red", "blue", "pink", "green", "gray"];
+
 export const Flashcard = ({
     id,
     variant = "tiny",
+    color,
     onClick = () => { },
     answer,
     question,
@@ -21,6 +24,7 @@ export const Flashcard = ({
     const [currentQuestion, setCurrentQuestion] = useState(question || "");
     const [currentAnswer, setCurrentAnswer] = useState(answer || "");
     const [open, setOpen] = useState(false);
+    const [flashCardColor, setFlashCardColor] = useState(color || COLORS[Math.floor(Math.random() * COLORS.length)]);
 
     const changePage = () => setPage(prev => !prev);
 
@@ -35,7 +39,7 @@ export const Flashcard = ({
     }
 
     return (
-        <FlashcardContainer onClick={onClick} variant={variant}>
+        <FlashcardContainer onClick={onClick} variant={variant} color={flashCardColor}>
             <NoDrag>
                 <ChangeButton onClick={() => changePage()} variant="transparent">
                     <img src="https://www.flaticon.com/svg/static/icons/svg/565/565249.svg"
