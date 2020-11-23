@@ -1,6 +1,7 @@
 import React from "react";
 
 import AuthProvider from "@core/auth";
+import { AlertProvider } from "@core/alert";
 
 import { Navbar, Footer } from "@components";
 
@@ -10,11 +11,13 @@ import { GlobalStyle } from "@styles/GlobalStyle";
 
 export const Modules = () => {
   return (
-    <AuthProvider>
-      <GlobalStyle />
-      <Navbar />
-      <Router />
-      <Footer />
-    </AuthProvider>
+    <AlertProvider>
+      <AuthProvider>
+        <GlobalStyle />
+        <Navbar />
+        <Router />
+        <Footer />
+      </AuthProvider>
+    </AlertProvider>
   );
 };
