@@ -1,45 +1,52 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { useHistory } from "react-router-dom";
+
 import { useAuthProvider } from "@core/auth";
 
-import { Board, Item, Variant } from "@components";
+import { Button } from "@components";
 
-import { StyledButton, DashboardContainer } from "./style";
-import { Redirect } from "react-router";
+import { Deck, getDecks, createDeck, deleteDeck } from "@firebase";
 
 const Dashboard = () => {
+  const [decks, setDecks] = useState<Deck[]>([]);
+
   const { user } = useAuthProvider();
-  const [items, setItems] = useState<Item[]>([]);
 
-  const getIndex = () => {
-    let max = -1;
-    items.map(({ id }) => (parseInt(id) > max ? (max = parseInt(id)) : ""));
-    return max + 1 + "";
-  };
+  const history = useHistory();
 
-  const addFlashcard = (v: Variant) => {
-    const item: Item = { id: getIndex(), coords: { x: 0, y: 0 }, variant: v };
-    setItems([...items, item]);
-  };
+  useEffect(() => {
+    user &&
+      (async () => {
+        try {
+          const decks = await getDecks(user!.decks);
+          setDecks(decks);
+        } catch (err) {
+          console.log(err);
+        }
+      })();
+  }, [user]);
 
   return (
-    <>
-      {user ? (
-        <DashboardContainer>
-          <StyledButton onClick={() => addFlashcard("tiny")}>
-            Add tiny flashcard
-          </StyledButton>
-          <StyledButton onClick={() => addFlashcard("medium")}>
-            Add medium flashcard
-          </StyledButton>
-          <StyledButton onClick={() => addFlashcard("large")}>
-            Add large flashcard
-          </StyledButton>
-          <Board items={items} />
-        </DashboardContainer>
-      ) : (
-        <Redirect to="/" />
-      )}
-    </>
+    // CHANGE WHEN CATEGORY / DECK COMPONENT IS FINISHED
+    // THIS IS ONLY FOR TEST PURPOSES
+    // BUTTON ADDS A DECK
+    // CLICKING ON BUTTON NEXT TO DECK'S NAME DELETES IT
+    <div>
+      <Button onClick={() => createDeck("deck1", user!.id)}>TEST</Button>
+      {decks &&
+        decks.map((deck, idx) => {
+          return (
+            <div key={idx}>
+              <Button onClick={() => deleteDeck(deck.id)}>
+                DELETE {deck.name}
+              </Button>
+              <h2 onClick={() => history.push(`/deck/${deck.id}`)}>
+                {deck.name} - click me to go to my dashboard
+              </h2>
+            </div>
+          );
+        })}
+    </div>
   );
 };
 
