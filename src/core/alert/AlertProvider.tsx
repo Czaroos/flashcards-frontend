@@ -1,18 +1,19 @@
 import React, { createContext, useContext, useState } from "react";
 
-import { Alert } from "@components"
+import { Alert, AlertVariant } from "@components"
 
 import { AlertsContainer } from "./style"
 
 type Alert = {
     msg: string,
     id: number,
-    variant: boolean
+    visibility: boolean,
+    variant?: AlertVariant
 }
 
 interface Props {
     alerts: Alert[],
-    addAlert: (msg: string) => void
+    addAlert: (msg: string, variant: AlertVariant) => void
 }
 
 const STATE: Props = {
@@ -25,28 +26,29 @@ const Context = createContext(STATE);
 export const AlertProvider = (props: any) => {
     const [alerts, setAlerts] = useState<Alert[]>([]);
 
-    // const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-    const addAlert = (msg: string) => {
+    const addAlert = (msg: string, variant: AlertVariant) => {
         const id = alerts.length > 0 ? alerts[alerts.length - 1].id + 1 : 0;
-        setAlerts([...alerts, { msg: msg, id: id, variant: false }]);
+        setAlerts([...alerts, { msg: msg, id: id, visibility: false, variant: variant }]);
     }
 
     const removeAlert = async (id: number) => {
-        // changeVisibility(id);
-        // await sleep(1000);
+        await sleep(1);
+        changeVisibility(id);
+        await sleep(1000);
         setAlerts(prev => prev.filter(e => e.id !== id))
     }
 
-    // const changeVisibility = (id: number) => {
-    //     let items = alerts;
-    //     items.map(e => {
-    //         if (e.id === id) {
-    //             e.variant = !e.variant
-    //         }
-    //     })
-    //     setAlerts([...items]);
-    // }
+    const changeVisibility = (id: number) => {
+        let items = alerts;
+        items.map(e => {
+            if (e.id === id) {
+                e.visibility = !e.visibility
+            }
+        })
+        setAlerts([...items]);
+    }
 
     const state: Props = {
         alerts: alerts,
@@ -58,7 +60,7 @@ export const AlertProvider = (props: any) => {
             {alerts.length > 0 &&
                 <AlertsContainer>
                     {alerts.map((e) => {
-                        return <Alert key={e.id} msg={e.msg + e.id} onClick={() => removeAlert(e.id)} variant={e.variant} />
+                        return <Alert key={e.id} msg={e.msg + e.id} onClick={() => removeAlert(e.id)} visibility={e.visibility} variant={e.variant} />
                     })}
                 </AlertsContainer>}
             {props.children}

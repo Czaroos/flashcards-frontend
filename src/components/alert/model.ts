@@ -1,8 +1,11 @@
-export interface AlertVariant {
-    variant: boolean
+export type AlertVariant = 'info' | 'success' | 'warning' | 'danger'
+
+export interface AlertStyleProps {
+    visibility: boolean,
+    variant?: AlertVariant
 }
 
-export interface AlertProps extends AlertVariant {
+export interface AlertProps extends AlertStyleProps {
     msg: string,
     onClick: () => void
 }

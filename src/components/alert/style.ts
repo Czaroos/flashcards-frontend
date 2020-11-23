@@ -1,21 +1,28 @@
 import styled from "styled-components";
 
-import { AlertVariant } from "./model"
+import { AlertStyleProps } from "./model"
 
-export const AlertContainer = styled.div<AlertVariant>`
+export const AlertContainer = styled.div<AlertStyleProps>`
     position:relative;
     width: 500px;
     height: 50px;
     margin-bottom: 15px;
-    background: var(--primary-light);
-    border-left: 8px solid var(--primary);
     border-radius: 5px;
     transition: all 1s;
-    margin-left: ${({ variant }) => variant ? '520px' : '0'};
+    margin-left: ${({ visibility }) => visibility ? '520px' : '0'};
     display: grid;
     align-items: center;
     padding-left: 15px;
     font-size: 20px;
+    background: ${({ variant }) => variant === 'danger' && 'rgb(255,151,162)'};
+    background: ${({ variant }) => variant === 'info' && 'rgb(215,240,254)'};
+    background: ${({ variant }) => variant === 'success' && 'rgb(196,243,216)'};
+    background: ${({ variant }) => variant === 'warning' && 'rgb(254,219,156)'};
+    border-left: 8px solid;
+    border-color: ${({ variant }) => variant === 'danger' && 'rgb(254,72,84)'};
+    border-color: ${({ variant }) => variant === 'info' && 'rgb(121,194,245)'};
+    border-color: ${({ variant }) => variant === 'success' && 'rgb(49,212,116)'};
+    border-color: ${({ variant }) => variant === 'warning' && 'rgb(255,164,6)'};
 `;
 
 export const CloseButt = styled.button`
@@ -30,4 +37,5 @@ export const CloseButt = styled.button`
     display: grid;
     justify-content: center;
     align-items: center;
+    background: none;
 `;
