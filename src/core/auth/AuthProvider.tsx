@@ -33,7 +33,7 @@ class Provider extends React.Component<Props, typeof STATE> {
               firebase.default.firestore.DocumentData
             >
           ) => {
-            const { email, displayName, createdAt } = snapshot.data()!;
+            const { email, displayName, createdAt, decks } = snapshot.data()!;
             this.setState(
               {
                 user: {
@@ -41,10 +41,12 @@ class Provider extends React.Component<Props, typeof STATE> {
                   email,
                   displayName,
                   createdAt,
+                  decks,
                 },
               },
               () => {
-                this.props.history.push(`/dashboard/${snapshot.id}`);
+                this.props.history.location.pathname !== "/" &&
+                  this.props.history.push(`/dashboard/${snapshot.id}`);
               }
             );
           }

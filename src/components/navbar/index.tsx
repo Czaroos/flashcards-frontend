@@ -1,6 +1,7 @@
 import React, { useCallback, useState } from "react";
+import { useHistory } from "react-router-dom";
 
-import { Button, SignIn, SignUp } from "@components";
+import { Avatar, Button, SignIn, SignUp } from "@components";
 
 import { useAuthProvider } from "@core/auth";
 
@@ -14,6 +15,8 @@ export const Navbar = () => {
 
   const { user, logOut } = useAuthProvider();
 
+  const history = useHistory();
+
   const handleSignIn = useCallback(() => {
     setSignIn(true);
   }, []);
@@ -21,8 +24,6 @@ export const Navbar = () => {
   const handleSignUp = useCallback(() => {
     setSignUp(true);
   }, []);
-
-  // Add links after routing is added
 
   return (
     <>
@@ -48,7 +49,10 @@ export const Navbar = () => {
         <Actions>
           {user ? (
             <>
-              <h3>You are logged in as {user.displayName}</h3>
+              <Avatar
+                displayName={user.displayName}
+                onClick={() => history.push(`/dashboard/${user.id}`)}
+              />
               <Button width="190px" onClick={logOut}>
                 LOG OUT
               </Button>
