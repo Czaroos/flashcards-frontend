@@ -1,4 +1,4 @@
-export type Variant = "tiny" | "medium" | "large"
+import { Variant, Color } from "../flashcard/model"
 
 export interface BoardProps {
     items: Item[]
@@ -9,6 +9,7 @@ export type Item = {
     onClick?(): void;
     answer?: string,
     question?: string,
+    color?: Color,
     id: string,
     coords: {
         x: number,

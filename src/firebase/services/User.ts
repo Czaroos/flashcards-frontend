@@ -12,6 +12,7 @@ export const createUser = async (
   if (!snapshot.exists) {
     const { displayName, email } = user;
     const createdAt = new Date();
+    const decks: string[] = [];
 
     const newUser = Object.assign(
       {},
@@ -19,6 +20,7 @@ export const createUser = async (
         displayName,
         email,
         createdAt,
+        decks,
       },
       ...rest
     );

@@ -13,14 +13,11 @@ export const StyledGridLayout = styled(GridLayout)`
     z-index: 3;
     will-change: transform;
     top: 0;
+    left: 0;
   }
 
   .react-grid-item.react-grid-placeholder {
     box-sizing: border-box;
     border: 3px dashed var(--secondary);
-  }
-
-  .react-grid-item:active{
-    cursor: move;
   }
 `;

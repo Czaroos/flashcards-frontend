@@ -42,4 +42,4 @@ export const Board = ({ items }: BoardProps) => {
 
 }
 
-export { Item, Variant } from "./model";
+export { Item } from "./model";
