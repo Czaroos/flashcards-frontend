@@ -1,3 +1,4 @@
+export * from "./alert";
 export * from "./board";
 export * from "./button";
 export * from "./flashcard";
