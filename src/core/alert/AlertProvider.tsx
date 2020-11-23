@@ -60,7 +60,7 @@ export const AlertProvider = (props: any) => {
             {alerts.length > 0 &&
                 <AlertsContainer>
                     {alerts.map((e) => {
-                        return <Alert key={e.id} msg={e.msg + e.id} onClick={() => removeAlert(e.id)} visibility={e.visibility} variant={e.variant} />
+                        return <Alert key={e.id} msg={e.msg} onClick={() => removeAlert(e.id)} visibility={e.visibility} variant={e.variant} />
                     })}
                 </AlertsContainer>}
             {props.children}
