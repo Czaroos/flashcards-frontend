@@ -1,21 +1,21 @@
 import { firestore } from "../config";
 
-import { Deck } from "../models";
+import { Deck, EditDeckPayload } from "../models";
 
 export const createDeck = async (name: string, userId: string) => {
   const deck = await firestore
     .collection("decks")
     .where("name", "==", name)
+    .where("authors", "array-contains", userId)
     .get();
 
-  //TODO: change it later to users only decks (?)
   if (!deck.empty) {
     alert("Deck with this name already exists.");
     return;
   }
 
   const authors: string[] = [userId];
-  const createdAt = new Date();
+  const createdAt = new Date().toUTCString();
   const flashcards: string[] = [];
 
   const newDeck = {
@@ -74,6 +74,35 @@ export const deleteDeck = async (deckId: string) => {
     });
 
     return await firestore.doc(`decks/${deckId}`).delete();
+  } catch (err) {
+    return err;
+  }
+};
+
+export const editDeck = async ({ id, userId, name }: EditDeckPayload) => {
+  const deck = await firestore
+    .collection("decks")
+    .where("name", "==", name)
+    .get();
+
+  //TODO: change it later to users only decks (?)
+  if (!deck.empty) {
+    return new Error("Deck with this name already exists.");
+  }
+
+  const editedAt = new Date().toUTCString();
+
+  try {
+    const user = await firestore.doc(`users/${userId}`).get();
+    const { displayName } = user.data()!;
+
+    const deck = await firestore.doc(`decks/${id}`).get();
+    return await deck.ref.set({
+      ...deck.data(),
+      name,
+      editedAt,
+      editedBy: displayName,
+    });
   } catch (err) {
     return err;
   }

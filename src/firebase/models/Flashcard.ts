@@ -16,7 +16,7 @@ export interface Flashcard {
   editedBy?: string;
 }
 
-export interface EditPayload {
+export interface EditFlashcardPayload {
   id: string;
   userId: string;
   question?: string;

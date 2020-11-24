@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React from "react";
 import GridLayout from "react-grid-layout";
 import { BoardProps } from "./model";
 import { COLUMNS, ROW_HEIGHTS, WIDTH, SIZE } from "./utils";
@@ -12,9 +12,9 @@ export const Board = ({ items, setItems }: BoardProps) => {
     console.log(e); //implement send data to database
   };
 
-  const handleDelete = useCallback((id: string) => {
+  const handleDelete = (id: string) => {
     setItems!(items.filter((item) => item.id !== id));
-  }, []);
+  };
 
   return (
     <StyledGridLayout

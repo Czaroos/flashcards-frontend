@@ -1,6 +1,6 @@
 import { firestore } from "../config";
 
-import { Color, Flashcard, Variant, EditPayload } from "../models";
+import { Color, Flashcard, Variant, EditFlashcardPayload } from "../models";
 
 export const createFlashcard = async (
   deckId: string,
@@ -89,7 +89,7 @@ export const editFlashcard = async ({
   coords,
   color,
   variant,
-}: EditPayload) => {
+}: EditFlashcardPayload) => {
   const editedAt = new Date().toUTCString();
 
   try {
