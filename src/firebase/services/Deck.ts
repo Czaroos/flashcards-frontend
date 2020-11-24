@@ -6,9 +6,9 @@ export const createDeck = async (name: string, userId: string) => {
   const deck = await firestore
     .collection("decks")
     .where("name", "==", name)
+    .where("authors", "array-contains", userId)
     .get();
 
-  //TODO: change it later to users only decks (?)
   if (!deck.empty) {
     alert("Deck with this name already exists.");
     return;
