@@ -6,6 +6,7 @@ import { useAuthProvider } from "@core/auth";
 import { Button } from "@components";
 
 import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
+import { DashboardContainer } from "./style";
 
 const Dashboard = () => {
   const [decks, setDecks] = useState<Deck[]>([]);
@@ -49,14 +50,13 @@ const Dashboard = () => {
     // BUTTON ADDS A DECK
     // CLICKING ON BUTTON NEXT TO DECK'S NAME DELETES IT
     <div>
-      <Button onClick={() => createDeck("deck1", user!.id)}>TEST</Button>
+      <Button width="300px" onClick={() => createDeck("deck1", user!.id)}>
+        Create new deck
+      </Button>
       {decks &&
         decks.map((deck, idx) => {
           return (
-            <div key={idx}>
-              <Button onClick={() => deleteDeck(deck.id)}>
-                DELETE {deck.name}
-              </Button>
+            <DashboardContainer key={idx}>
               <h2 onClick={() => history.push(`/deck/${deck.id}`)}>
                 {deck.name} - click me to go to my dashboard - edited at -
                 {deck.editedAt}- edited by - {deck.editedBy}
@@ -66,9 +66,10 @@ const Dashboard = () => {
                   handleEdit(deck.id, "new Name");
                 }}
               >
-                SUBMIT EDIT
+                EDIT
               </Button>
-            </div>
+              <Button onClick={() => deleteDeck(deck.id)}>DELETE</Button>
+            </DashboardContainer>
           );
         })}
     </div>
