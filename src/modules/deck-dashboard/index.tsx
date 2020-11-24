@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Board, Item, Variant } from "@components";
+import { Board, Item } from "@components";
 
 import { StyledButton, DashboardContainer } from "./style";
 
@@ -17,7 +17,7 @@ const DeckDashboard = () => {
     return max + 1 + "";
   };
 
-  const addFlashcard = (v: Variant) => {
+  const addFlashcard = (v: any) => {
     const item: Item = { id: getIndex(), coords: { x: 0, y: 0 }, variant: v };
     setItems([...items, item]);
   };
