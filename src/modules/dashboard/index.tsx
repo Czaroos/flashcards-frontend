@@ -57,7 +57,7 @@ const Dashboard = () => {
               <Button onClick={() => deleteDeck(deck.id)}>
                 DELETE {deck.name}
               </Button>
-              <h2 onClick={() => history.push(`/deck/${deck.id}`)}>
+              <h2 onClick={() => history.push(`/decks/${deck.id}`)}>
                 {deck.name} - click me to go to my dashboard - edited at -
                 {deck.editedAt}- edited by - {deck.editedBy}
               </h2>
