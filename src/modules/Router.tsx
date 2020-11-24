@@ -10,7 +10,7 @@ const ModulesRouter = () => {
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/dashboard/:userId" component={Dashboard} />
-      <Route exact path="/deck/:deckId" component={DeckDashboard} />
+      <Route exact path="/decks/:deckId" component={DeckDashboard} />
       <Route path="**" render={() => <div>Not Found Page</div>} />
     </Switch>
   );
