@@ -26,15 +26,23 @@ export const FlashToolContainer = styled.div`
     grid-column: 2/3;
     display: flex;
     justify-content: space-evenly;
+    align-items: center;
 
     @media (max-width: 960px) {
       flex-direction: column-reverse;
       align-items: center;
     }
 
-    div {
+    .flashTool {
       width: 50%;
-      margin: 20px;
+    }
+
+    .carouselContainer {
+      width: 350px;
+      height: 190px;
+    }
+
+    div {
 
       @media (max-width: 960px) {
         width: 100%;
@@ -49,6 +57,6 @@ export const FlashToolContainer = styled.div`
         font-size: 25px;
       }
 
-    } 
+    }
   }
 `;
