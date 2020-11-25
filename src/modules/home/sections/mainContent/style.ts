@@ -1,50 +1,52 @@
 import styled from "styled-components";
+import { Button } from "@components";
 
 export const CreateFlashcardContainer = styled.div`
+  background: var(--primary);
   display: grid;
-  align-items: center;
-  grid-template-columns: 1fr max(1200px) 1fr;
-  padding: 100px 0;
-  color: var(--primary-light);
-  /* background-image: url('https://4.allegroimg.com/original/015eea/7d7bcc674192bb6359bc876c67c4/ENGLISH-QUEST-3-KARTY-OBRAZKOWE-flashcards-komplet'); */
-  background-position: center;
-  background-blend-mode: multiply;
-  background-color: #41464f;
+  grid-template-areas: "left right";
+  grid-template-columns: 1fr 1fr;
+`;
 
-  @media (max-width: 1250px) {
-    grid-template-columns: 1fr 30fr 1fr;
+export const LeftDiv = styled.div`
+  grid-area: left;
+  display: grid;
+  justify-items: center;
+  height: 700px;
+
+  h1{
+    text-align:center;
+    font-size: 35px;
+    font-weight: 900;
+    margin-bottom: 50px;
+    text-align: left;
   }
 
-  @media (max-width: 960px) {
-    grid-template-columns: 1fr 5fr 1fr;
+  h2{
+    text-align: left;
+    padding-bottom: 100px;
+  }
+`;
+
+export const RightDiv = styled.div`
+  grid-area: right;
+  height: 700px;
+
+  svg{
+    width: 100%;
   }
 
-  section {
-    grid-column: 2/3;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: inherit;
-    text-align: center;
-  }
+`;
 
-  @media (max-width: 960px) {
-    flex-direction: column;
-  }
+export const Content = styled.div`
+  width: 400px;
+  padding-top: 100px;
+`;
 
-  h1 {
-    margin: 20px 0;
-    font-size: 50px;
-    font-weight: 700;
-  }
-
-  p {
-    margin: 20px 0;
-    font-size: 25px;
-  }
-
-  div {
-    margin: 20px 0;
-  }
+export const StyledButton = styled(Button)`
+  background: var(--white);
+  color: var(--black);
+  font-weight: 900;
+  margin: 0;
+  width: 200px;
 `;
