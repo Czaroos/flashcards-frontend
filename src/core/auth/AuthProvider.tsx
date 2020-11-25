@@ -45,11 +45,11 @@ class Provider extends React.Component<Props, typeof STATE> {
                   createdAt,
                   decks,
                 },
-              },
-              () => {
-                this.props.history.location.pathname !== "/" &&
-                  this.props.history.push(`/dashboard/${snapshot.id}`);
               }
+              // () => {
+              //   this.props.history.location.pathname !== "/" &&
+              //     this.props.history.push(`/dashboard/${snapshot.id}`);
+              // }
             );
           }
         );

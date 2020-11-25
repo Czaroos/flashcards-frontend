@@ -33,14 +33,14 @@ export const Navbar = () => {
         <img
           src={LogoWhite}
           alt="logo"
-          onClick={() => alert("redirect to /")}
+          onClick={() => history.push(`/`)}
         />
         <nav>
-          <Button onClick={() => alert("redirect to /")} variant="transparent">
+          <Button onClick={() => history.push(`/`)} variant="transparent">
             HOME
           </Button>
           <Button
-            onClick={() => alert("redirect to /about")}
+            onClick={() => history.push(`/about`)}
             variant="transparent"
           >
             ABOUT
@@ -58,15 +58,15 @@ export const Navbar = () => {
               </Button>
             </>
           ) : (
-            <>
-              <Button variant="transparent" onClick={handleSignIn}>
-                SIGN IN
+              <>
+                <Button variant="transparent" onClick={handleSignIn}>
+                  SIGN IN
               </Button>
-              <Button width="190px" onClick={handleSignUp}>
-                SIGN UP
+                <Button width="190px" onClick={handleSignUp}>
+                  SIGN UP
               </Button>
-            </>
-          )}
+              </>
+            )}
         </Actions>
 
         <Sidebar>Icon Button</Sidebar>
