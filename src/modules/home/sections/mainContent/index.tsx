@@ -2,7 +2,7 @@ import { Button } from "@components";
 import React from "react";
 import { CreateFlashcardContainer } from "./style";
 
-export const CreateFlashcard = () => {
+export const MainContent = () => {
   return (
     <CreateFlashcardContainer>
       <section>
@@ -17,7 +17,7 @@ export const CreateFlashcard = () => {
             onClick={() => console.log("clicked")}
             width="222px"
           >
-            Create flashcard
+            Let's go!
           </Button>
         </div>
       </section>

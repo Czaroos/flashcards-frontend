@@ -1,10 +1,10 @@
-import { CreateFlashcard, FlashTool, Features, Benefits } from "./sections";
+import { MainContent, FlashTool, Features, Benefits } from "./sections";
 import React from "react";
 
 const Home = () => {
   return (
     <>
-      <CreateFlashcard />
+      <MainContent />
       <FlashTool />
       <Features />
       <Benefits />

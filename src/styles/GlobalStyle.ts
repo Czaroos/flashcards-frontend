@@ -48,14 +48,24 @@ export const GlobalStyle = createGlobalStyle`
 }
   :root{
     /* Colours */
-    --white: #ffffff;
-    --black: #000000;
+    --white: #FFFFC8;
+    --black: #212227;
     --grey: #c3c3c3;
+    --red: #FF312E;
+    --green: #2BA84A;
+    --yellow: #FEE638;
+
     --details: #D77A61;
+    --primary-light: #59D478;
+    --primary: #2BA84A;
+    --primary-dark: #248A3D;
+    --secondary: #2D3935;
+
+    /* --details: #D77A61;
     --primary-light: #EEF1EF;
     --primary: #C3CBD5;
     --primary-dark: #5E6572;
-    --secondary: #2D3935;
+    --secondary: #2D3935; */
 
     /* Font weight */
     --very-thin: 100;

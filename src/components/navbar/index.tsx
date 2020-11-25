@@ -6,6 +6,7 @@ import { Avatar, Button, SignIn, SignUp } from "@components";
 import { useAuthProvider } from "@core/auth";
 
 import LogoWhite from "@images/logo-white.png";
+import LogOut from "@images/logout.png";
 
 import { Actions, NavbarContainer, Sidebar } from "./style";
 
@@ -34,17 +35,13 @@ export const Navbar = () => {
           src={LogoWhite}
           alt="logo"
           onClick={() => history.push(`/`)}
+          height="50"
         />
         <nav>
-          <Button onClick={() => history.push(`/`)} variant="transparent">
-            HOME
-          </Button>
-          <Button
-            onClick={() => history.push(`/about`)}
-            variant="transparent"
-          >
-            ABOUT
-          </Button>
+          <ul>
+            <li onClick={() => history.push(`/`)} >HOME</li>
+            <li onClick={() => history.push(`/about`)}>ABOUT</li>
+          </ul>
         </nav>
         <Actions>
           {user ? (
@@ -53,8 +50,8 @@ export const Navbar = () => {
                 displayName={user.displayName}
                 onClick={() => history.push(`/dashboard/${user.id}`)}
               />
-              <Button width="190px" onClick={logOut}>
-                LOG OUT
+              <Button width="75" onClick={logOut}>
+                <img src={LogOut} height="20" width="20" />
               </Button>
             </>
           ) : (

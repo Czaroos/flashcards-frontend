@@ -6,7 +6,7 @@ export const CreateFlashcardContainer = styled.div`
   grid-template-columns: 1fr max(1200px) 1fr;
   padding: 100px 0;
   color: var(--primary-light);
-  background-image: url('https://4.allegroimg.com/original/015eea/7d7bcc674192bb6359bc876c67c4/ENGLISH-QUEST-3-KARTY-OBRAZKOWE-flashcards-komplet');
+  /* background-image: url('https://4.allegroimg.com/original/015eea/7d7bcc674192bb6359bc876c67c4/ENGLISH-QUEST-3-KARTY-OBRAZKOWE-flashcards-komplet'); */
   background-position: center;
   background-blend-mode: multiply;
   background-color: #41464f;

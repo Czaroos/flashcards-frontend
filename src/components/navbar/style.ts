@@ -7,18 +7,14 @@ export const NavbarContainer = styled.div`
   width: 100%;
   height: 80px;
   padding: 0 32px;
-  background: var(--secondary);
+  background: var(--primary-light);
 
   & > img {
-    display: flex;
-    max-width: 260px;
-    height: 45px;
-    margin: 16px;
     cursor: pointer;
+  }
 
-    &:hover {
-      opacity: 0.7;
-    }
+  & > img:hover {
+    transform: rotate(5deg);
   }
 
   & > nav {
@@ -29,6 +25,34 @@ export const NavbarContainer = styled.div`
 
     @media (max-width: 960px) {
       display: none;
+    }
+
+    & > ul {
+      list-style-type: none;
+      height: 100%;
+      display: flex;
+
+      & > li {
+        height: 35px;
+        color: var(--white);
+        font-weight: 900;
+        font-size: 20px;
+        border-right: 3px solid var(--white);
+        padding-right: 20px;
+        padding-left: 20px;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      & > li:last-child{
+        border: none;
+      }
+
+      & > li:hover{
+        background: rgba(255,255,200,0.5);
+      }
     }
   }
 `;
