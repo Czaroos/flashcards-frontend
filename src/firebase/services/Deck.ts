@@ -1,6 +1,6 @@
 import { firestore } from "../config";
 
-import { Deck, EditPayload } from "../models";
+import { Deck, EditDeckPayload } from "../models";
 
 export const createDeck = async (name: string, userId: string) => {
   const deck = await firestore
@@ -79,13 +79,13 @@ export const deleteDeck = async (deckId: string) => {
   }
 };
 
-export const editDeck = async ({ id, userId, name }: EditPayload) => {
+export const editDeck = async ({ id, userId, name }: EditDeckPayload) => {
   const deck = await firestore
     .collection("decks")
     .where("name", "==", name)
+    .where("authors", "array-contains", userId)
     .get();
 
-  //TODO: change it later to users only decks (?)
   if (!deck.empty) {
     return new Error("Deck with this name already exists.");
   }

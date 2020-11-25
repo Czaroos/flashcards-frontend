@@ -23,9 +23,6 @@ const elements: Item[] = [
     { id: "tiny_16", coords: { x: 2, y: 1 }, variant: "tiny" },
     { id: "tiny_17", coords: { x: 2, y: 1 }, variant: "tiny" },
     { id: "tiny_18", coords: { x: 2, y: 1 }, variant: "tiny" },
-]
+];
 
-storiesOf("Board", module)
-    .add("default", () => (
-        <Board items={elements} />
-    ));
+storiesOf("Board", module).add("default", () => <Board items={elements} />);

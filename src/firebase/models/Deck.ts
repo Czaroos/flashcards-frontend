@@ -8,7 +8,7 @@ export interface Deck {
   editedAt?: string;
 }
 
-export interface EditPayload {
+export interface EditDeckPayload {
   id: string;
   userId: string;
   name: string;

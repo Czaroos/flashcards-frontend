@@ -57,7 +57,7 @@ const Dashboard = () => {
         decks.map((deck, idx) => {
           return (
             <DashboardContainer key={idx}>
-              <h2 onClick={() => history.push(`/deck/${deck.id}`)}>
+              <h2 onClick={() => history.push(`/decks/${deck.id}`)}>
                 {deck.name} - click me to go to my dashboard - edited at -
                 {deck.editedAt}- edited by - {deck.editedBy}
               </h2>
