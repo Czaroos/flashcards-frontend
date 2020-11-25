@@ -26,3 +26,7 @@ export const StyledGridLayout = styled(GridLayout)`
     border: 3px dashed var(--secondary);
   }
 `;
+
+export const Container = styled.div`
+  position: relative;
+`;

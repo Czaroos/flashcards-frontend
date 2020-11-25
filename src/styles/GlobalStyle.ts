@@ -69,13 +69,18 @@ export const GlobalStyle = createGlobalStyle`
   * {
       margin: 0;
       padding: 0;
-      overflow-y: auto;
       box-sizing: border-box;
       font-family: "Roboto";
       outline: none;
       transition: all 0.25s;
       text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    }
+
+    body{
+      & > * {
+        overflow-y: auto;
+      }
     }
 `;
 
