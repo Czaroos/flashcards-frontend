@@ -1,6 +1,6 @@
 import { firestore } from "../config";
 
-import { Color, Flashcard, Variant } from "../models";
+import { Color, Flashcard, Variant, EditFlashcardPayload } from "../models";
 
 export const createFlashcard = async (
   deckId: string,
@@ -9,7 +9,7 @@ export const createFlashcard = async (
   variant: Variant,
   color?: Color
 ) => {
-  const createdAt = new Date();
+  const createdAt = new Date().toUTCString();
   const coords = { x: 0, y: 0 };
 
   const newFlashcard = {
@@ -76,6 +76,38 @@ export const deleteFlashcard = async (flashcardId: string) => {
     });
 
     return await firestore.doc(`flashcards/${flashcardId}`).delete();
+  } catch (err) {
+    return err;
+  }
+};
+
+export const editFlashcard = async ({
+  id,
+  userId,
+  question,
+  answer,
+  coords,
+  color,
+  variant,
+}: EditFlashcardPayload) => {
+  const editedAt = new Date().toUTCString();
+
+  try {
+    const user = await firestore.doc(`users/${userId}`).get();
+    const { displayName } = user.data()!;
+
+    const flashcard = await firestore.doc(`flashcards/${id}`).get();
+    const data = flashcard.data()!;
+    return await flashcard.ref.set({
+      ...data,
+      question: question || data.question,
+      answer: answer || data.answer,
+      coords: coords || data.coords,
+      color: color || data.color,
+      variant: variant || data.variant,
+      editedAt,
+      editedBy: displayName,
+    });
   } catch (err) {
     return err;
   }
