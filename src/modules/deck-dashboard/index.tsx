@@ -3,8 +3,8 @@ import { Redirect } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Board, Item, Variant } from "@components";
-
+import { Board, Item } from "@components";
+type Variant = 'tiny' | 'medium' | 'large'
 import { StyledButton, DashboardContainer } from "./style";
 
 const DeckDashboard = () => {
@@ -39,8 +39,8 @@ const DeckDashboard = () => {
           <Board items={items} />
         </DashboardContainer>
       ) : (
-        <Redirect to="/" />
-      )}
+          <Redirect to="/" />
+        )}
     </>
   );
 };

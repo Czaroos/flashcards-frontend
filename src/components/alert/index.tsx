@@ -2,18 +2,17 @@ import React, { useEffect, useState } from "react";
 
 import { AlertProps } from "./model";
 
-import { AlertContainer, CloseButt } from "./style"
+import { AlertContainer } from "./style"
 
 
-export const Alert = ({ msg, onClick, visibility, variant = 'info' }: AlertProps): JSX.Element => {
-    const [value, setValue] = useState(true);
+export const Alert = ({ msg, visibility, variant = 'info' }: AlertProps): JSX.Element => {
+    const [value, setValue] = useState<boolean>(true);
     useEffect(() => {
         setValue(visibility)
     }, [visibility])
     return (
         <AlertContainer visibility={value} variant={variant}>
             {msg}
-            <CloseButt onClick={() => onClick()}>x</CloseButt>
         </AlertContainer>
     )
 }
