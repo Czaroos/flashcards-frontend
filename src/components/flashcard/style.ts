@@ -31,6 +31,8 @@ export const FlashcardContainer = styled.div<FlashcardVariant>`
 `;
 
 export const ModalDiv = styled.div`
+  left: calc(50% - 150px);
+  top: 60px;
   width: 300px;
   height: 100px;
   background: var(--primary-light);

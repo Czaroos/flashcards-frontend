@@ -1,4 +1,5 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect, useMemo } from "react";
+import { createPortal } from "react-dom";
 
 import { ModalContainer } from "./style";
 
@@ -6,10 +7,17 @@ import { ModalProps } from "./model";
 
 export const Modal = ({ open, setOpen, children }: ModalProps) => {
   useEffect(() => {
+    document.body.prepend(el);
     document.body.style.overflow = "hidden";
-    return function () {
+
+    return () => {
+      document.body.removeChild(el);
       document.body.style.overflow = "auto";
     };
+  }, []);
+
+  const el = useMemo(() => {
+    return document.createElement("div");
   }, []);
 
   const handleClose = useCallback(() => {
@@ -20,9 +28,14 @@ export const Modal = ({ open, setOpen, children }: ModalProps) => {
     e.stopPropagation();
   }, []);
 
-  return (
-    <ModalContainer onClick={handleClose} open={open}>
+  return createPortal(
+    <ModalContainer
+      onClick={handleClose}
+      open={open}
+      onMouseDown={handlePreventPropagation}
+    >
       <div onClick={handlePreventPropagation}>{children}</div>
-    </ModalContainer>
+    </ModalContainer>,
+    el
   );
 };
