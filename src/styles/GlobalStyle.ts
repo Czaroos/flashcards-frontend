@@ -57,6 +57,10 @@ export const GlobalStyle = createGlobalStyle`
     --primary-dark: #5E6572;
     --secondary: #2D3935;
 
+    --blue: #A4D3EE;
+    --error: #FF6961;
+    --ok: #50C878;
+
     /* Font weight */
     --very-thin: 100;
     --thin: 300;
