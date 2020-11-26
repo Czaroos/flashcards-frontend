@@ -1,13 +1,19 @@
 import styled from "styled-components";
 
+import { Button } from "@components";
+
 export const NavbarContainer = styled.div`
   display: flex;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 1200px;
   height: 80px;
   padding: 0 32px;
-  background: var(--primary-light);
+  z-index: 6;
+  position: absolute;
+  top: 0;
+  left: calc(50% - 600px);
 
   & > img {
     cursor: pointer;
@@ -94,4 +100,8 @@ export const Sidebar = styled.div`
   @media (min-width: 960px) {
     display: none;
   }
+`;
+
+export const StyledButton = styled(Button)`
+  border: 2px solid var(--white);
 `;

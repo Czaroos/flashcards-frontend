@@ -8,7 +8,7 @@ import { useAuthProvider } from "@core/auth";
 import LogoWhite from "@images/logo-white.png";
 import LogOut from "@images/logout.png";
 
-import { Actions, NavbarContainer, Sidebar } from "./style";
+import { Actions, NavbarContainer, Sidebar, StyledButton } from "./style";
 
 export const Navbar = () => {
   const [signIn, setSignIn] = useState(false);
@@ -50,18 +50,18 @@ export const Navbar = () => {
                 displayName={user.displayName}
                 onClick={() => history.push(`/dashboard/${user.id}`)}
               />
-              <Button width="75" onClick={logOut}>
+              <StyledButton width="75" onClick={logOut} variant="transparent">
                 <img src={LogOut} height="20" width="20" />
-              </Button>
+              </StyledButton>
             </>
           ) : (
               <>
                 <Button variant="transparent" onClick={handleSignIn}>
                   SIGN IN
               </Button>
-                <Button width="190px" onClick={handleSignUp}>
+                <StyledButton variant="transparent" width="190px" onClick={handleSignUp}>
                   SIGN UP
-              </Button>
+              </StyledButton>
               </>
             )}
         </Actions>
