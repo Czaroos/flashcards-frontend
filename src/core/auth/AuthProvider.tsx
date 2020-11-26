@@ -1,6 +1,8 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 
+import { AlertContext } from "@core/alert"
+
 import { auth, createUser, User, signInWithGoogle } from "@firebase";
 
 export interface State {
@@ -65,17 +67,21 @@ class Provider extends React.Component<Props, typeof STATE> {
 
       this.setState({ user: null }, () => {
         this.props.history.push(`/`);
+        this.context.addAlert("You have been logged out", 'info')
       });
     } catch {
       this.setState({ ...STATE });
+      this.context.addAlert("Logout failed", 'danger')
     }
   };
 
   logIn = async (email: string, password: string) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
+      this.context.addAlert("Successful login!", 'success')
     } catch {
       this.setState({ ...STATE });
+      this.context.addAlert("Login failed", 'danger')
     }
   };
 
@@ -92,6 +98,12 @@ class Provider extends React.Component<Props, typeof STATE> {
     }
   };
 
+  loginViaGoogle = () => {
+    signInWithGoogle().then(
+      () => this.context.addAlert("Successful login!", 'success'),
+      () => this.context.addAlert("Login failed", 'danger'))
+  }
+
   componentWillUnmount() {
     this._unsubscribeFromAuth();
   }
@@ -101,7 +113,7 @@ class Provider extends React.Component<Props, typeof STATE> {
     logOut: this.logOut,
     logIn: this.logIn,
     signUp: this.signUp,
-    signInWithGoogle,
+    signInWithGoogle: this.loginViaGoogle,
   };
 
   render = () => (
@@ -120,3 +132,4 @@ export const useAuthProvider = () => {
 };
 
 export default AuthProvider;
+Provider.contextType = AlertContext;

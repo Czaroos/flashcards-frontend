@@ -7,5 +7,4 @@ export interface AlertStyleProps {
 
 export interface AlertProps extends AlertStyleProps {
     msg: string,
-    onClick: () => void
 }

@@ -11,63 +11,76 @@ type Alert = {
     variant?: AlertVariant
 }
 
-interface Props {
+interface StateProps {
     alerts: Alert[],
     addAlert: (msg: string, variant: AlertVariant) => void
 }
 
-const STATE: Props = {
+const STATE: StateProps = {
     alerts: [],
     addAlert: () => { }
 }
 
-const Context = createContext(STATE);
+interface Props {
+    children: React.ReactNode
+}
 
-export const AlertProvider = (props: any) => {
-    const [alerts, setAlerts] = useState<Alert[]>([]);
+export const AlertContext = createContext(STATE);
 
-    const sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
+export class AlertProvider extends React.Component<Props, typeof STATE>{
+    sleep = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
-    const addAlert = (msg: string, variant: AlertVariant) => {
-        const id = alerts.length > 0 ? alerts[alerts.length - 1].id + 1 : 0;
-        setAlerts([...alerts, { msg: msg, id: id, visibility: false, variant: variant }]);
+    addAlert = (msg: string, variant: AlertVariant) => {
+        const id = this.state.alerts.length > 0 ? this.state.alerts[this.state.alerts.length - 1].id + 1 : 0;
+        this.setState({
+            alerts: [...this.state.alerts, { msg: msg, id: id, visibility: false, variant: variant }]
+        }, async () => {
+            await this.sleep(3000);
+            this.removeAlert(id);
+        })
     }
 
-    const removeAlert = async (id: number) => {
-        await sleep(1);
-        changeVisibility(id);
-        await sleep(1000);
-        setAlerts(prev => prev.filter(e => e.id !== id))
+    removeAlert = async (id: number) => {
+        await this.sleep(1);
+        this.changeVisibility(id);
+        await this.sleep(1000);
+        this.setState({
+            alerts: this.state.alerts.filter(e => e.id !== id)
+        })
     }
 
-    const changeVisibility = (id: number) => {
-        let items = alerts;
+    changeVisibility = (id: number) => {
+        let items = this.state.alerts;
         items.map(e => {
             if (e.id === id) {
                 e.visibility = !e.visibility
             }
         })
-        setAlerts([...items]);
+        this.setState({
+            alerts: [...items]
+        })
     }
 
-    const state: Props = {
-        alerts: alerts,
-        addAlert: addAlert
+    readonly state: typeof STATE = {
+        alerts: [],
+        addAlert: this.addAlert
     }
 
-    return (
-        <Context.Provider value={state}>
-            {alerts.length > 0 &&
-                <AlertsContainer>
-                    {alerts.map((e) => {
-                        return <Alert key={e.id} msg={e.msg} onClick={() => removeAlert(e.id)} visibility={e.visibility} variant={e.variant} />
-                    })}
-                </AlertsContainer>}
-            {props.children}
-        </Context.Provider>
-    )
+    render() {
+        return (
+            <AlertContext.Provider value={this.state}>
+                {this.state.alerts.length > 0 &&
+                    <AlertsContainer>
+                        {this.state.alerts.map((e) => {
+                            return <Alert key={e.id} msg={e.msg} visibility={e.visibility} variant={e.variant} />
+                        })}
+                    </AlertsContainer>}
+                {this.props.children}
+            </AlertContext.Provider>
+        )
+    }
 }
 
 export const useAlert = () => {
-    return useContext(Context);
+    return useContext(AlertContext);
 }
