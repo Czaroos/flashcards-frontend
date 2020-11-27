@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Button, Input, Modal } from "@components";
+import { Button, Modal } from "@components";
 
 import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
 import {
