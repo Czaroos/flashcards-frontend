@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
 import { Button } from "@components";
@@ -22,7 +22,10 @@ const LearningGame = () => {
 
   const { deckId } = useParams<Params>();
 
+  const gameContainerRef = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
+    document.body.style.cursor = "progress";
     (async () => {
       const deck = await getDecks([deckId]);
       const flashcards = await getFlashcards(deck[0].flashcards);
@@ -37,11 +40,16 @@ const LearningGame = () => {
         }
       );
 
+      gameContainerRef.current?.focus();
+
       setFlashcards(markedFlashcards);
       setIndex(0);
       setLength(flashcards.length);
       setInitialLength(flashcards.length);
+
       setIsLoading(false);
+      gameContainerRef.current?.focus();
+      document.body.style.cursor = "default";
     })();
   }, []);
 
@@ -50,6 +58,7 @@ const LearningGame = () => {
   }, [flashcards]);
 
   const handleKeyboard = (e: React.KeyboardEvent<HTMLDivElement>) => {
+    e.preventDefault();
     e.key === " " && setShowAnswer(true);
     if (showAnswer) {
       e.key === "q" && handleAgain();
@@ -113,6 +122,7 @@ const LearningGame = () => {
       <S.LearningGameContainer
         onKeyPress={(e) => handleKeyboard(e)}
         tabIndex={1}
+        ref={gameContainerRef}
       >
         <S.Header>
           <h2>
@@ -149,7 +159,9 @@ const LearningGame = () => {
       <h2>Game finished!</h2>
     )
   ) : (
-    <h2>LOADING</h2>
+    <S.LoaderContainer>
+      <h1>Loading...</h1>
+    </S.LoaderContainer>
   );
 };
 
