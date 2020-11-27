@@ -90,7 +90,7 @@ export const GlobalStyle = createGlobalStyle`
 
     body{
       & > * {
-        overflow-y: auto;
+        //overflow-y: auto;
       }
     }
 `;
