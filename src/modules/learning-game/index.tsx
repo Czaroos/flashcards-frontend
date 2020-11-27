@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 
+import { Wave } from "@icons";
+
 import { Button } from "@components";
 
 import { Flashcard, getDecks, getFlashcards } from "@firebase";
@@ -124,6 +126,8 @@ const LearningGame = () => {
         tabIndex={1}
         ref={gameContainerRef}
       >
+        <Wave />
+        <Wave />
         <S.Header>
           <h2>
             <span>{againCount}</span>/<span>{goodCount}</span>/{length}

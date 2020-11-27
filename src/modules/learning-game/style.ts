@@ -19,6 +19,45 @@ export const LearningGameContainer = styled.div`
   );
   border-radius: 0 0 20% 20%;
   color: var(--white);
+
+  > svg {
+    transform: rotate(180deg);
+    position: absolute;
+    animation: wave 10s ease-in-out infinite;
+    width: 99%;
+
+    &:first-of-type {
+      fill: #fff;
+      bottom: -20px;
+    }
+
+    &:last-of-type {
+      fill: #fff;
+      bottom: -20px;
+      right: 25%;
+      animation: waveBackwards 8s ease-in-out infinite;
+    }
+  }
+
+  @keyframes wave {
+    0%,
+    100% {
+      transform: rotate(182deg);
+    }
+    50% {
+      transform: rotate(178deg);
+    }
+  }
+
+  @keyframes waveBackwards {
+    0%,
+    100% {
+      transform: rotate(178deg);
+    }
+    50% {
+      transform: rotate(182deg);
+    }
+  }
 `;
 
 export const Header = styled.div`
