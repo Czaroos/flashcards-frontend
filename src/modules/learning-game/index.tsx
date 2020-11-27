@@ -49,7 +49,6 @@ const LearningGame = () => {
 
       setIsLoading(false);
       gameContainerRef.current?.focus();
-
       document.body.style.cursor = "default";
     })();
   }, []);

@@ -17,7 +17,7 @@ export const LearningGameContainer = styled.div`
     var(--primary-light),
     var(--secondary-light)
   );
-  border-radius: 0 0 50% 50%;
+  border-radius: 0 0 20% 20%;
   color: var(--white);
 `;
 
@@ -27,6 +27,8 @@ export const Header = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  bottom: 10%;
   padding: 32px;
 
   > h2 {
