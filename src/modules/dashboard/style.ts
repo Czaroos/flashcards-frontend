@@ -1,3 +1,4 @@
+import { Button } from "@components";
 import styled from "styled-components";
 
 export const DashboardContainer = styled.div`
@@ -9,7 +10,7 @@ export const DashboardContainer = styled.div`
   margin: 10px 50px;
   cursor: pointer;
 
-  h2 {
+  > h2 {
     font-size: 22px;
     margin: 10px 20px;
   }
@@ -25,38 +26,18 @@ export const ModalContainer = styled.div`
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .3rem;
 
-  .title {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px;
-
-    img {
-      cursor: pointer;
-
-      :hover {
-        filter: drop-shadow(2px 4px 6px black);
-      }
-    }
-
-    div {
-      font-weight: bold;
-      font-size: 20px;
-    }
-  }
-
-  .form {
+  > form {
     display: flex;
     flex-direction: column;
 
-    label {
+    > label {
       margin-top: 20px;
       margin-bottom: 10px;
       margin-left: 20px;
       margin-right: 20px;
     }
 
-    input {
+    > input {
       display: flex;
       flex-flow: column;
       align-items: center;
@@ -69,14 +50,34 @@ export const ModalContainer = styled.div`
       margin-bottom: 20px;
       font-size: 18px;
     }
+  }
+`;
 
-    .button {
-      margin: 4px;
+export const MyBtn = styled(Button)`
+  margin: 20px;
+`;
+
+export const Title = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: 20px;
+
+    > img {
+      cursor: pointer;
+
+      :hover {
+        filter: drop-shadow(2px 4px 6px black);
+      }
     }
-  }
 
-  .separator {
-    border-bottom: 1px solid #80808075;;
-    margin: 0px 20px;
-  }
+    > div {
+      font-weight: bold;
+      font-size: 20px;
+    }
+`;
+
+export const Separator = styled.div`
+  border-bottom: 1px solid #80808075;
+  margin: 0px 20px;
 `;
