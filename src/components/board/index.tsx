@@ -5,7 +5,7 @@ import { COLUMNS, ROW_HEIGHTS, WIDTH, SIZE } from "./utils";
 
 import { Flashcard } from "@components";
 
-import { StyledGridLayout } from "./style";
+import { StyledGridLayout, Container } from "./style";
 
 export const Board = ({ items, setItems }: BoardProps) => {
   const handleOnDragStop = (e: GridLayout.Layout[]) => {
@@ -17,31 +17,33 @@ export const Board = ({ items, setItems }: BoardProps) => {
   };
 
   return (
-    <StyledGridLayout
-      onDragStop={(e) => handleOnDragStop(e)}
-      cols={COLUMNS}
-      rowHeight={ROW_HEIGHTS}
-      width={WIDTH}
-    >
-      {items.map((item) => {
-        const { variant } = item;
-        const index = variant ? variant : "tiny";
+    <Container>
+      <StyledGridLayout
+        onDragStop={(e) => handleOnDragStop(e)}
+        cols={COLUMNS}
+        rowHeight={ROW_HEIGHTS}
+        width={WIDTH}
+      >
+        {items.map((item) => {
+          const { variant } = item;
+          const index = variant ? variant : "tiny";
 
-        return (
-          <div
-            key={item.id}
-            data-grid={{
-              x: item.coords.x,
-              y: item.coords.y,
-              w: SIZE[index].w,
-              h: SIZE[index].h,
-            }}
-          >
-            <Flashcard {...item} onDelete={handleDelete} />
-          </div>
-        );
-      })}
-    </StyledGridLayout>
+          return (
+            <div
+              key={item.id}
+              data-grid={{
+                x: item.coords.x,
+                y: item.coords.y,
+                w: SIZE[index].w,
+                h: SIZE[index].h,
+              }}
+            >
+              <Flashcard {...item} onDelete={handleDelete} />
+            </div>
+          );
+        })}
+      </StyledGridLayout>
+    </Container>
   );
 };
 

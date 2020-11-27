@@ -83,6 +83,12 @@ export const GlobalStyle = createGlobalStyle`
       text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     }
+
+    body{
+      & > * {
+        overflow-y: auto;
+      }
+    }
 `;
 
 export const customStyles = (props: { customStyles?: string }) =>
