@@ -88,7 +88,8 @@ const Dashboard = () => {
                   {deck.editedAt}- edited by - {deck.editedBy}
                 </h2>
                 <Button
-                  onClick={() => {
+                  onClick={(e) => {
+                    e!.stopPropagation();
                     setOpenEdit(true);
                     setCurrentId(deck.id);
                     setEditInputValue(deck.name);
@@ -96,7 +97,14 @@ const Dashboard = () => {
                 >
                   EDIT
                 </Button>
-                <Button onClick={() => deleteDeck(deck.id)}>DELETE</Button>
+                <Button
+                  onClick={(e) => {
+                    e!.stopPropagation();
+                    deleteDeck(deck.id);
+                  }}
+                >
+                  DELETE
+                </Button>
               </DashboardContainer>
             </>
           );
