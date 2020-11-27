@@ -14,15 +14,16 @@ export const ButtonContainer = styled.div<ButtonVariant>`
   background: ${({ variant }) =>
     variant === "transparent" ? "transparent" : "var(--secondary)"};
   color: var(--white);
-  cursor: pointer;
+  cursor: ${({ disabled }) => (disabled ? "default" : "pointer")};
   user-select: none;
+  opacity: ${({ disabled }) => (disabled ? 0.3 : 1.0)};
 
   &:hover {
-    opacity: ${({ variant }) =>
-    variant === "transparent" && "0.7"};
+    opacity: ${({ disabled }) => (disabled ? 0.3 : 0.7)};
+    opacity: ${({ variant }) => variant === "transparent" && "0.7"};
     background: ${({ variant }) =>
-    variant === "default" && "var(--primary-dark)"};
+      variant === "default" && "var(--primary-dark)"};
     color: ${({ variant }) =>
-    variant === "transparent" ? "var(--details)" : "var(--white)"};
+      variant === "transparent" ? "var(--details)" : "var(--white)"};
   }
 `;

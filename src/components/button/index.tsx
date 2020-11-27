@@ -9,13 +9,15 @@ export const Button = ({
   onClick,
   children,
   width = "auto",
+  disabled = false,
   ...props
 }: ButtonProps) => {
   return (
     <ButtonContainer
-      onClick={onClick}
+      onClick={disabled ? () => null : onClick}
       variant={variant}
       width={width}
+      disabled={disabled}
       {...props}
     >
       {children}
