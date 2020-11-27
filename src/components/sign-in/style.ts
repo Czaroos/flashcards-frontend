@@ -7,7 +7,7 @@ export const SignInContainer = styled.div`
   top: 60px;
   width: 600px;
   border: 1px solid var(--secondary);
-  background: var(--primary-light);
+  background: var(--white);
 `;
 
 export const Header = styled.header`

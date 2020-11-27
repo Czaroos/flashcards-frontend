@@ -4,8 +4,8 @@ export const SignUpContainer = styled.div`
   left: calc(50% - 300px);
   top: 60px;
   width: 600px;
-  border: 1px solid var(--details);
-  background: var(--primary-light);
+  border: 1px solid var(--secondary);
+  background: var(--white);
 `;
 
 export const Header = styled.header`
@@ -14,7 +14,7 @@ export const Header = styled.header`
   color: var(--white);
   width: 100%;
   padding: 32px;
-  background: var(--details);
+  background: var(--secondary);
 `;
 
 export const Content = styled.div`

@@ -1,4 +1,4 @@
 export * from "./benefits";
-export * from "./createFlashcard";
+export * from "./mainContent";
 export * from "./features";
-export * from "./flashTool";
+export * from "./presentation";
