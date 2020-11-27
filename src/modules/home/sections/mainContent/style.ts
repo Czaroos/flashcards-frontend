@@ -2,10 +2,12 @@ import styled from "styled-components";
 import { Button } from "@components";
 
 export const CreateFlashcardContainer = styled.div`
-  position: relative;
+  position: absolute;
+  top: 0;
   height: 740px;
+  width: 100%;
   overflow-x: hidden;
-  z-index: 4;
+  z-index: 0;
   transition: all 0s;
   color: var(--white);
 `;
@@ -60,4 +62,9 @@ export const StyledButton = styled(Button)`
   border: 2px solid var(--white);
   width: 200px;
   margin: 0;
+  cursor: pointer;
+
+  &:hover{
+    opacity: 0.8;
+  }
 `;

@@ -2,6 +2,7 @@ import styled from "styled-components";
 
 export const PresentationContainer = styled.div`
   width: 1200px;
+  padding-top: 740px;
   margin: 0 auto;
   display: grid;
   grid-template-columns: repeat(2, 1fr);

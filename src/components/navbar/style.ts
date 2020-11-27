@@ -10,10 +10,8 @@ export const NavbarContainer = styled.div`
   width: 1200px;
   height: 80px;
   padding: 0 32px;
-  z-index: 6;
-  position: absolute;
-  top: 0;
-  left: calc(50% - 600px);
+  z-index: 10;
+  position: relative;
 
   & > img {
     cursor: pointer;

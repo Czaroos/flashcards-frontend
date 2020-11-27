@@ -48,7 +48,6 @@ export const Navbar = () => {
             <>
               <Avatar
                 displayName={user.displayName}
-                onClick={() => history.push(`/dashboard/${user.id}`)}
               />
               <StyledButton width="75" onClick={logOut} variant="transparent">
                 <img src={LogOut} height="20" width="20" />

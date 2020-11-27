@@ -12,7 +12,7 @@ export const ButtonContainer = styled.div<ButtonVariant>`
   justify-content: center;
   align-items: center;
   background: ${({ variant }) =>
-    variant === "transparent" ? "transparent" : "var(--primary)"};
+    variant === "transparent" ? "transparent" : "var(--secondary)"};
   color: var(--white);
   cursor: pointer;
   user-select: none;
