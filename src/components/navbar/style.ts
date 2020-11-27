@@ -1,24 +1,24 @@
 import styled from "styled-components";
 
+import { Button } from "@components";
+
 export const NavbarContainer = styled.div`
   display: flex;
+  margin: 0 auto;
   justify-content: space-between;
   align-items: center;
-  width: 100%;
+  width: 1200px;
   height: 80px;
   padding: 0 32px;
-  background: var(--secondary);
+  z-index: 10;
+  position: relative;
 
   & > img {
-    display: flex;
-    max-width: 260px;
-    height: 45px;
-    margin: 16px;
     cursor: pointer;
+  }
 
-    &:hover {
-      opacity: 0.7;
-    }
+  & > img:hover {
+    transform: rotate(5deg);
   }
 
   & > nav {
@@ -29,6 +29,34 @@ export const NavbarContainer = styled.div`
 
     @media (max-width: 960px) {
       display: none;
+    }
+
+    & > ul {
+      list-style-type: none;
+      height: 100%;
+      display: flex;
+
+      & > li {
+        height: 35px;
+        color: var(--white);
+        font-weight: 900;
+        font-size: 20px;
+        border-right: 3px solid var(--white);
+        padding-right: 20px;
+        padding-left: 20px;
+        display: grid;
+        justify-items: center;
+        align-items: center;
+        cursor: pointer;
+      }
+
+      & > li:last-child{
+        border: none;
+      }
+
+      & > li:hover{
+        background: rgba(255,255,200,0.5);
+      }
     }
   }
 `;
@@ -70,4 +98,8 @@ export const Sidebar = styled.div`
   @media (min-width: 960px) {
     display: none;
   }
+`;
+
+export const StyledButton = styled(Button)`
+  border: 2px solid var(--white);
 `;

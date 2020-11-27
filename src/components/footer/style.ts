@@ -6,8 +6,8 @@ export const FooterContainer = styled.div`
   grid-template-columns: 1fr max(1200px) 1fr;
   width: 100%;
   padding: 150px 0;
-  color: var(--primary-light);
-  background: var(--secondary);
+  color: var(--white);
+  background: linear-gradient(10deg,var(--primary-light),var(--secondary-light));
 
   @media (max-width: 1250px) {
     grid-template-columns: 1fr 30fr 1fr;

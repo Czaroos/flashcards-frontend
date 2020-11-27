@@ -48,14 +48,21 @@ export const GlobalStyle = createGlobalStyle`
 }
   :root{
     /* Colours */
-    --white: #ffffff;
-    --black: #000000;
-    --grey: #c3c3c3;
+    --white: #FFFFC8;
+    --black: #212227;
+
     --details: #D77A61;
+    --primary-light: #00FFED;
+    --primary: #2BA84A;
+    --primary-dark: #248A3D;
+    --secondary: #2D3935;
+    --secondary-light: #9D00C6;
+
+    /* --details: #D77A61;
     --primary-light: #EEF1EF;
     --primary: #C3CBD5;
     --primary-dark: #5E6572;
-    --secondary: #2D3935;
+    --secondary: #2D3935; */
 
     --blue: #A4D3EE;
     --error: #FF6961;
@@ -79,6 +86,12 @@ export const GlobalStyle = createGlobalStyle`
       transition: all 0.25s;
       text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
+    }
+
+    body{
+      & > * {
+        overflow-y: auto;
+      }
     }
 `;
 

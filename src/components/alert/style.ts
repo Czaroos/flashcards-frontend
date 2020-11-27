@@ -8,7 +8,7 @@ export const AlertContainer = styled.div<AlertStyleProps>`
     height: 50px;
     margin-bottom: 15px;
     border-radius: 5px;
-    transition: all 1s;
+    transition: margin-left linear 0.7s;
     margin-left: ${({ visibility }) => visibility ? '520px' : '0'};
     display: grid;
     align-items: center;
@@ -23,19 +23,4 @@ export const AlertContainer = styled.div<AlertStyleProps>`
     border-color: ${({ variant }) => variant === 'info' && 'rgb(121,194,245)'};
     border-color: ${({ variant }) => variant === 'success' && 'rgb(49,212,116)'};
     border-color: ${({ variant }) => variant === 'warning' && 'rgb(255,164,6)'};
-`;
-
-export const CloseButt = styled.button`
-    position: absolute;
-    top: 12px;
-    right: 10px;
-    border-radius: 50%;
-    width: 25px;
-    height: 25px;
-    border: none;
-    cursor: pointer;
-    display: grid;
-    justify-content: center;
-    align-items: center;
-    background: none;
 `;

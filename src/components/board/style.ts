@@ -3,6 +3,11 @@ import styled from "styled-components";
 import GridLayout from "react-grid-layout";
 
 export const StyledGridLayout = styled(GridLayout)`
+  overflow: hidden;
+    
+  & > * {
+    overflow: hidden;
+  }
 
   .react-grid-item{
     transition: 0s all;
@@ -20,4 +25,8 @@ export const StyledGridLayout = styled(GridLayout)`
     box-sizing: border-box;
     border: 3px dashed var(--secondary);
   }
+`;
+
+export const Container = styled.div`
+  position: relative;
 `;

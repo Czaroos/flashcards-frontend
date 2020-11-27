@@ -73,6 +73,14 @@ export const deleteDeck = async (deckId: string) => {
       });
     });
 
+    const { flashcards } = await (
+      await firestore.doc(`decks/${deckId}`).get()
+    ).data()!;
+
+    flashcards.forEach(async (id: string) => {
+      await firestore.doc(`flashcards/${id}`).delete();
+    });
+
     return await firestore.doc(`decks/${deckId}`).delete();
   } catch (err) {
     return err;

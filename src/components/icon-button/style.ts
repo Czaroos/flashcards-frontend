@@ -26,7 +26,6 @@ export const IconButtonContainer = styled.div<SVGProps>`
   }
 
   &:hover {
-    background: var(--primary-light);
 
     > svg {
       opacity: 1;
