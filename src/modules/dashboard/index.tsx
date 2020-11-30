@@ -3,13 +3,18 @@ import { useHistory } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Button, Modal } from "@components";
+import { Modal } from "@components";
 
 import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
 import {
+  CreateDeck,
   DashboardContainer,
+  DeckWrapper,
+  DeleteButton,
+  EditButton,
   ModalContainer,
   MyBtn,
+  PlayButton,
   Separator,
   Title,
 } from "./style";
@@ -19,9 +24,11 @@ const Dashboard = () => {
 
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
+  const [openDelete, setOpenDelete] = useState(false);
 
   const [addInputValue, setAddInputValue] = useState("");
   const [editInputValue, setEditInputValue] = useState("");
+  const [deleteInputValue, setDeleteInputValue] = useState("");
 
   const [currentId, setCurrentId] = useState("");
 
@@ -72,22 +79,16 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Button width="300px" onClick={() => setOpenAdd(true)}>
-        Create new deck
-      </Button>
-      {decks &&
-        decks.map((deck, idx) => {
-          return (
-            <>
-              <DashboardContainer
+      <DashboardContainer>
+        {decks &&
+          decks.map((deck, idx) => {
+            return (
+              <DeckWrapper
                 key={idx}
                 onClick={() => history.push(`/decks/${deck.id}`)}
               >
-                <h2>
-                  {deck.name} - click me to go to my dashboard - edited at -
-                  {deck.editedAt}- edited by - {deck.editedBy}
-                </h2>
-                <Button
+                <h2>{deck.name}</h2>
+                <EditButton
                   onClick={(e) => {
                     e!.stopPropagation();
                     setOpenEdit(true);
@@ -95,24 +96,58 @@ const Dashboard = () => {
                     setEditInputValue(deck.name);
                   }}
                 >
-                  EDIT
-                </Button>
-                <Button
+                  <img
+                    src="https://www.flaticon.com/svg/static/icons/svg/860/860763.svg"
+                    height="25"
+                    width="25"
+                  />
+                </EditButton>
+                <DeleteButton
                   onClick={(e) => {
                     e!.stopPropagation();
-                    deleteDeck(deck.id);
+                    setCurrentId(deck.id);
+                    setDeleteInputValue(deck.name);
+                    setOpenDelete(true);
                   }}
                 >
-                  DELETE
-                </Button>
-              </DashboardContainer>
-            </>
-          );
-        })}
+                  <img
+                    src="https://www.flaticon.com/svg/static/icons/svg/1214/1214594.svg"
+                    height="27"
+                    width="27"
+                  />
+                </DeleteButton>
+                <PlayButton
+                  onClick={(e) => {
+                    e!.stopPropagation();
+                  }}
+                >
+                  <img
+                    src="https://www.flaticon.com/svg/static/icons/svg/13/13973.svg"
+                    height="27"
+                    width="27"
+                  />
+                </PlayButton>
+              </DeckWrapper>
+            );
+          })}
+        <CreateDeck
+          onClick={() => {
+            setAddInputValue("");
+            setOpenAdd(true);
+          }}
+        >
+          <img
+            src="https://www.flaticon.com/svg/static/icons/svg/992/992651.svg"
+            height="100"
+            width="100"
+          />
+          <h2>Create new deck</h2>
+        </CreateDeck>
+      </DashboardContainer>
       <Modal open={openAdd} setOpen={setOpenAdd}>
         <ModalContainer>
           <Title>
-            <div>Add</div>
+            <div>Create deck</div>
             <img
               onClick={() => setOpenAdd(false)}
               src="https://www.flaticon.com/svg/static/icons/svg/447/447047.svg"
@@ -158,6 +193,34 @@ const Dashboard = () => {
             <Separator />
             <MyBtn onClick={handleEditDeck}>Confirm</MyBtn>
           </form>
+        </ModalContainer>
+      </Modal>
+
+      <Modal open={openDelete} setOpen={setOpenDelete}>
+        <ModalContainer>
+          <Title>
+            <div>Delete</div>
+            <img
+              onClick={() => setOpenDelete(false)}
+              src="https://www.flaticon.com/svg/static/icons/svg/447/447047.svg"
+              alt="close"
+              height="16"
+              width="16"
+            />
+          </Title>
+          <Separator />
+          <p>
+            Are you sure you want to delete deck: <b>{deleteInputValue}</b> ?
+          </p>
+          <Separator />
+          <MyBtn
+            onClick={() => {
+              deleteDeck(currentId);
+              setOpenDelete(false);
+            }}
+          >
+            Confirm
+          </MyBtn>
         </ModalContainer>
       </Modal>
     </div>

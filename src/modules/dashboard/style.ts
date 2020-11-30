@@ -3,26 +3,112 @@ import styled from "styled-components";
 
 export const DashboardContainer = styled.div`
   display: grid;
-  grid-template-columns: 8fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: 40px 4%;
+  max-width: 1300px;
+  margin: 100px auto;
+  padding: 0px 50px;
   align-items: center;
-  border: 2px solid var(--details);
-  border-radius: 25px;
-  margin: 10px 50px;
+`;
+
+export const DeckWrapper = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 10fr 1fr;
+  padding: 10px;
+  height: 170px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  background-blend-mode: darken;
+  background-color: #c0c0c433;
+  color: #212227;
   cursor: pointer;
+  border-bottom: 3px solid #802fcd;
+
+  :hover {
+    transition: border 0.5s ease-out;
+    border-bottom: 3px solid #20CAE5;
+  }
 
   > h2 {
-    font-size: 22px;
-    margin: 10px 20px;
+    grid-column-start: 2;
+    grid-row-start: 2;
+    font-size: 25px;
+    margin: 2px 0px;
+    word-break: break-word;
+    text-align: center;
+    align-self: flex-end;
   }
+
+  img {
+    filter: invert(24%) sepia(3%) saturate(3547%) hue-rotate(230deg) brightness(94%) contrast(84%);
+
+    :hover {
+      filter: invert(28%) sepia(52%) saturate(2770%) hue-rotate(255deg) brightness(84%) contrast(104%);
+    }
+  }
+`;
+
+export const CreateDeck = styled(DeckWrapper)`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: none;
+
+  :hover {
+    border: none;
+
+    img {
+      filter: invert(23%) sepia(65%) saturate(3553%) hue-rotate(262deg) brightness(82%) contrast(95%);
+    }
+
+    h2 {
+      color: #802fcd;
+    }
+  }
+  
+  > h2 {
+    align-self: center;
+    margin-top: 14px;
+  }
+`;
+
+export const MyIcon = styled(Button)`
+  width: 0px;
+  height: 0px;
+  padding: 0;
+  cursor: pointer;
+  
+  :hover {
+    opacity: 1;
+  }
+`;
+
+export const EditButton = styled(MyIcon)`
+  grid-column-start: 3;
+  grid-row-start: 2;
+  padding-left: 1px;
+  align-self: flex-end;
+`;
+
+export const DeleteButton = styled(MyIcon)`
+  grid-column-start: 3;
+  grid-row-start: 1;
+`;
+
+export const PlayButton = styled(MyIcon)`
+  grid-column-start: 1;
+  grid-row-start: 1;
 `;
 
 export const ModalContainer = styled.div`
   background: white;
-  width: 300px;
-  margin: 50px auto;
   float: none;
   display: flex;
   flex-direction: column;
+  margin: 200px auto;
+  width: 300px;
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .3rem;
 
@@ -50,6 +136,11 @@ export const ModalContainer = styled.div`
       margin-bottom: 20px;
       font-size: 18px;
     }
+  }
+
+  > p {
+    font-size: 20px;
+    margin: 20px;
   }
 `;
 
