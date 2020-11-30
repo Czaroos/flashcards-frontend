@@ -9,6 +9,7 @@ export const FooterContainer = styled.div`
   padding: 120px 0;
   color: var(--white);
   background: linear-gradient(10deg,var(--primary-light),var(--secondary-light));
+  font-size: 0.9em;
 
   @media (max-width: 1250px) {
     grid-template-columns: 1fr 30fr 1fr;
@@ -35,7 +36,7 @@ export const FooterContainer = styled.div`
       a {
         cursor: pointer;
         text-indent: 20px;
-        font-size: 20px;
+        font-size: 18px;
         margin: 5px;
       }
     }
