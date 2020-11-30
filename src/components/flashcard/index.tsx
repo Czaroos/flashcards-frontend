@@ -4,6 +4,8 @@ import { useAuthProvider } from "@core/auth";
 
 import { Input, Modal } from "@components";
 
+import CloseButton from "@images/close.png"
+
 import { deleteFlashcard, editFlashcard } from "@firebase";
 
 import { FlashcardProps, Color } from "./model";
@@ -22,7 +24,7 @@ export const Flashcard = ({
   id,
   variant = "tiny",
   color,
-  onClick = () => {},
+  onClick = () => { },
   answer,
   question,
   onDelete,
@@ -71,11 +73,11 @@ export const Flashcard = ({
             <p>{currentQuestion}</p>
           </>
         ) : (
-          <>
-            <p>Answer</p>
-            <p>{currentAnswer}</p>
-          </>
-        )}
+            <>
+              <p>Answer</p>
+              <p>{currentAnswer}</p>
+            </>
+          )}
 
         <NoDrag>
           <EditButton onClick={() => setOpen(true)} variant="transparent">
@@ -92,7 +94,10 @@ export const Flashcard = ({
             }}
             variant="transparent"
           >
-            Del
+            <img
+              src={CloseButton}
+              height="12"
+              width="12" />
           </DeleteButton>
         </NoDrag>
       </FlashcardContainer>
@@ -108,16 +113,16 @@ export const Flashcard = ({
             />
           </ModalDiv>
         ) : (
-          <ModalDiv>
-            Edit answer
-            <Input
-              key={2}
-              width="100%"
-              onChange={(e) => handleSetAnswer(e.target.value)}
-              value={currentAnswer}
-            />
-          </ModalDiv>
-        )}
+            <ModalDiv>
+              Edit answer
+              <Input
+                key={2}
+                width="100%"
+                onChange={(e) => handleSetAnswer(e.target.value)}
+                value={currentAnswer}
+              />
+            </ModalDiv>
+          )}
       </Modal>
     </>
   );

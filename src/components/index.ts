@@ -2,6 +2,7 @@ export * from "./alert";
 export * from "./avatar";
 export * from "./board";
 export * from "./button";
+export * from "./dropdown-menu";
 export * from "./flashcard";
 export * from "./modal";
 export * from "./icon-button";
