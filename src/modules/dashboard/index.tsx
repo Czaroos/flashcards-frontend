@@ -98,8 +98,8 @@ const Dashboard = () => {
                 >
                   <img
                     src="https://www.flaticon.com/svg/static/icons/svg/860/860763.svg"
-                    height="25"
-                    width="25"
+                    height="23"
+                    width="23"
                   />
                 </EditButton>
                 <DeleteButton
