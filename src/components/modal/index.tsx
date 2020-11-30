@@ -7,15 +7,13 @@ import { ModalProps } from "./model";
 
 export const Modal = ({ open, setOpen, children }: ModalProps) => {
   useEffect(() => {
-    if (open) {
-      document.body.prepend(el);
-      document.body.style.overflow = "hidden";
+    document.body.prepend(el);
+    if (open) document.body.style.overflow = "hidden";
 
-      return () => {
-        document.body.removeChild(el);
-        document.body.style.overflow = "auto";
-      };
-    }
+    return () => {
+      document.body.removeChild(el);
+      document.body.style.overflow = "auto";
+    };
   }, []);
 
   const el = useMemo(() => {
