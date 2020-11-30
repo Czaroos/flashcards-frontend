@@ -1,0 +1,64 @@
+{
+  "name": "flashcards-frontend",
+  "version": "1.0.0",
+  "description": "Flashcards app",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "webpack-dev-server --hot --progress",
+    "build": "webpack --mode production",
+    "test": "jest",
+    "storybook": "start-storybook -p 6006 --no-dll",
+    "build-storybook": "build-storybook --no-dll"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Czaroos/flashcards-frontend.git"
+  },
+  "author": "Billennium",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Czaroos/flashcards-frontend/issues"
+  },
+  "homepage": "https://github.com/Czaroos/flashcards-frontend#readme",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "@storybook/addon-actions": "^6.0.28",
+    "@storybook/addon-essentials": "^6.0.28",
+    "@storybook/addon-knobs": "^6.0.28",
+    "@storybook/addon-links": "^6.0.28",
+    "@storybook/react": "^6.0.28",
+    "@types/jest": "^26.0.15",
+    "@types/react": "^16.9.56",
+    "@types/react-dom": "^16.9.9",
+    "@types/react-grid-layout": "^1.1.1",
+    "@types/react-router": "^5.1.8",
+    "@types/react-router-dom": "^5.1.6",
+    "@types/styled-components": "^5.1.4",
+    "@types/react-grid-layout": "^1.1.1",
+    "babel-loader": "^8.1.0",
+    "html-webpack-plugin": "^4.5.0",
+    "image-webpack-loader": "^7.0.1",
+    "jest": "^26.6.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "react-is": "^17.0.1",
+    "styled-components": "^5.2.1",
+    "svg-url-loader": "^6.0.0",
+    "ts-jest": "^26.4.4",
+    "ts-loader": "^8.0.11",
+    "tsconfig-paths-webpack-plugin": "^3.3.0",
+    "typescript": "^4.0.5",
+    "url-loader": "^4.1.1",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0"
+  },
+  "dependencies": {
+    "@types/react-grid-layout": "^1.1.1",
+    "firebase": "^8.0.1",
+    "react-grid-layout": "^1.2.0",
+    "react-router": "^5.2.0",
+    "react-router-dom": "^5.2.0",
+    "react-grid-layout": "^1.2.0"
+  }
+}
