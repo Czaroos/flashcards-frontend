@@ -3,13 +3,31 @@ import GridLayout from "react-grid-layout";
 import { BoardProps } from "./model";
 import { COLUMNS, ROW_HEIGHTS, WIDTH, SIZE } from "./utils";
 
+import { editFlashcard } from "@firebase";
+
 import { Flashcard } from "@components";
+
+import { useAuthProvider } from "@core/auth";
 
 import { StyledGridLayout, Container } from "./style";
 
 export const Board = ({ items, setItems }: BoardProps) => {
-  const handleOnDragStop = (e: GridLayout.Layout[]) => {
-    console.log(e); //implement send data to database
+  const { user } = useAuthProvider();
+
+  const handleOnDragStop = async (e: GridLayout.Layout[]) => {
+    try {
+      e.forEach((flashcard: any) => {
+        const coords = {
+          x: flashcard.x,
+          y: flashcard.y,
+        };
+
+        editFlashcard({ id: flashcard.i, userId: user!.id, coords });
+      });
+    } catch (err) {
+      //put alert here
+      console.log(err);
+    }
   };
 
   const handleDelete = (id: string) => {
