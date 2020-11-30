@@ -28,5 +28,7 @@ export const StyledGridLayout = styled(GridLayout)`
 `;
 
 export const Container = styled.div`
+  margin: 0 auto;
   position: relative;
+  width: 1100px;
 `;

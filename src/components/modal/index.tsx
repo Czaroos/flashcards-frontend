@@ -7,13 +7,15 @@ import { ModalProps } from "./model";
 
 export const Modal = ({ open, setOpen, children }: ModalProps) => {
   useEffect(() => {
-    document.body.prepend(el);
-    document.body.style.overflow = "hidden";
+    if (open) {
+      document.body.prepend(el);
+      document.body.style.overflow = "hidden";
 
-    return () => {
-      document.body.removeChild(el);
-      document.body.style.overflow = "auto";
-    };
+      return () => {
+        document.body.removeChild(el);
+        document.body.style.overflow = "auto";
+      };
+    }
   }, []);
 
   const el = useMemo(() => {
@@ -29,13 +31,15 @@ export const Modal = ({ open, setOpen, children }: ModalProps) => {
   }, []);
 
   return createPortal(
-    <ModalContainer
-      onClick={handleClose}
-      open={open}
-      onMouseDown={handlePreventPropagation}
-    >
-      <div onClick={handlePreventPropagation}>{children}</div>
-    </ModalContainer>,
+    open && (
+      <ModalContainer
+        onClick={handleClose}
+        open={open}
+        onMouseDown={handlePreventPropagation}
+      >
+        <div onClick={handlePreventPropagation}>{children}</div>
+      </ModalContainer>
+    ),
     el
   );
 };

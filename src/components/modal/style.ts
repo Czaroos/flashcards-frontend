@@ -11,7 +11,6 @@ export const ModalContainer = styled.div<ModalOpen>`
   height: 100%;
   overflow-y: auto;
   z-index: 100;
-  display: ${({ open }) => (open ? "default" : "none")};
 
   > * > * {
     z-index: 101;

@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Board, Item } from "@components";
+import { Board, Item, DropDownMenu } from "@components";
 
 import {
   createFlashcard,
@@ -13,7 +13,7 @@ import {
   Color,
 } from "@firebase";
 
-import { StyledButton, DashboardContainer } from "./style";
+import { StyledButton, DashboardContainer, DummyBackground } from "./style";
 
 interface Params {
   deckId: string;
@@ -53,21 +53,24 @@ const DeckDashboard = () => {
         color
       );
       setFlashcards([...flashcards, newFlashcard]);
-    } catch (err) {}
+    } catch (err) { }
   };
 
   return (
     <>
+      <DummyBackground />
       <DashboardContainer>
-        <StyledButton onClick={() => addFlashcard("", "", "tiny")}>
-          Add tiny flashcard
+        <DropDownMenu name="Add">
+          <StyledButton onClick={() => addFlashcard("", "", "tiny")}>
+            Add tiny flashcard
         </StyledButton>
-        <StyledButton onClick={() => addFlashcard("", "", "medium", "blue")}>
-          Add medium flashcard
+          <StyledButton onClick={() => addFlashcard("", "", "medium", "blue")}>
+            Add medium flashcard
         </StyledButton>
-        <StyledButton onClick={() => addFlashcard("", "", "large", "pink")}>
-          Add large flashcard
+          <StyledButton onClick={() => addFlashcard("", "", "large", "pink")}>
+            Add large flashcard
         </StyledButton>
+        </DropDownMenu>
         <Board items={flashcards} setItems={setFlashcards} />
       </DashboardContainer>
       )
