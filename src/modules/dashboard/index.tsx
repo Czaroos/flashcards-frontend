@@ -123,7 +123,9 @@ const Dashboard = () => {
                   <PlayButton
                     onClick={(e) => {
                       e!.stopPropagation();
-                      history.push(`/decks/${deck.id}/play`);
+                      deck.flashcards.length > 0
+                        ? history.push(`/decks/${deck.id}/play`)
+                        : alert("This deck is empty!");
                     }}
                   >
                     <img
