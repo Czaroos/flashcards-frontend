@@ -5,6 +5,7 @@ import Home from "./home";
 import Dashboard from "./dashboard";
 import DeckDashboard from "./deck-dashboard";
 import LearningGame from "./learning-game";
+import { NoPage } from "@components"
 
 const ModulesRouter = () => {
   return (
@@ -13,7 +14,7 @@ const ModulesRouter = () => {
       <Route exact path="/dashboard/:userId" component={Dashboard} />
       <Route exact path="/decks/:deckId" component={DeckDashboard} />
       <Route exact path="/decks/:deckId/play" component={LearningGame} />
-      <Route path="**" render={() => <div>Not Found Page</div>} />
+      <Route exact path="**" component={NoPage} />
     </Switch>
   );
 };
