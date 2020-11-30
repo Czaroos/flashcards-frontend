@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 import { Wave } from "@icons";
 
@@ -23,6 +23,7 @@ const LearningGame = () => {
   const [goodCount, setGoodCount] = useState(0);
 
   const { deckId } = useParams<Params>();
+  const history = useHistory();
 
   const gameContainerRef = useRef<HTMLDivElement>(null);
 
@@ -142,9 +143,9 @@ const LearningGame = () => {
           {showAnswer ? (
             <h2>{flashcards[index].answer}</h2>
           ) : (
-            <Button onClick={() => setShowAnswer(true)}>
+            <S.ActionButton onClick={() => setShowAnswer(true)}>
               SHOW ANSWER (SPACE)
-            </Button>
+            </S.ActionButton>
           )}
         </S.Content>
         <S.ActionButtons>
@@ -160,12 +161,25 @@ const LearningGame = () => {
         </S.ActionButtons>
       </S.LearningGameContainer>
     ) : (
-      <h2>Game finished!</h2>
+      <S.InitialView>
+        <h1>Well done!</h1>
+        <h1>
+          You reviewed a total of <span>{initialLength}</span> cards!
+        </h1>
+        <S.Row>
+          <S.ActionButton onClick={() => history.go(-1)}>
+            GO BACK
+          </S.ActionButton>
+          <Button variant="transparent" onClick={() => history.go(0)}>
+            PLAY AGAIN
+          </Button>
+        </S.Row>
+      </S.InitialView>
     )
   ) : (
-    <S.LoaderContainer>
+    <S.InitialView>
       <h1>Loading...</h1>
-    </S.LoaderContainer>
+    </S.InitialView>
   );
 };
 
