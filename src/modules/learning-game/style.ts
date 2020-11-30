@@ -126,19 +126,37 @@ export const ActionButtons = styled.div`
   width: 100%;
 `;
 
+export const ActionButton = styled(Button)`
+  &:hover {
+    background: var(--secondary);
+  }
+`;
+
 export const AgainButton = styled(Button)`
   background: var(--error);
+
+  &:hover {
+    background: var(--error);
+  }
 `;
 
 export const GoodButton = styled(Button)`
   background: var(--ok);
+
+  &:hover {
+    background: var(--ok);
+  }
 `;
 
 export const EasyButton = styled(Button)`
   background: var(--blue);
+
+  &:hover {
+    background: var(--blue);
+  }
 `;
 
-export const LoaderContainer = styled.div`
+export const InitialView = styled.div`
   margin-top: -200px;
   background-image: linear-gradient(
     30deg,
@@ -150,6 +168,20 @@ export const LoaderContainer = styled.div`
   margin-bottom: 10%;
   color: var(--white);
   display: flex;
+  flex-flow: column;
   justify-content: center;
   align-items: center;
+
+  > h1 {
+    margin: 20px 0;
+
+    > span {
+      color: var(--secondary);
+      margin: 0 4px;
+    }
+  }
+`;
+
+export const Row = styled.div`
+  display: flex;
 `;
