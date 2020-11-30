@@ -9,6 +9,7 @@ import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
 import {
   CreateDeck,
   DashboardContainer,
+  DashboardGrid,
   DeckWrapper,
   DeleteButton,
   EditButton,
@@ -78,8 +79,8 @@ const Dashboard = () => {
   }, [user]);
 
   return (
-    <div>
-      <DashboardContainer>
+    <DashboardContainer>
+      <DashboardGrid>
         {decks &&
           decks.map((deck, idx) => {
             return (
@@ -144,7 +145,7 @@ const Dashboard = () => {
           />
           <h2>Create new deck</h2>
         </CreateDeck>
-      </DashboardContainer>
+      </DashboardGrid>
       <Modal open={openAdd} setOpen={setOpenAdd}>
         <ModalContainer>
           <Title>
@@ -224,7 +225,7 @@ const Dashboard = () => {
           </MyBtn>
         </ModalContainer>
       </Modal>
-    </div>
+    </DashboardContainer>
   );
 };
 
