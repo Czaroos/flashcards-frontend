@@ -1,8 +1,18 @@
 import { Button } from "@components";
 import styled from "styled-components";
 
+export const DummyBackground = styled.div`
+  background-image: linear-gradient(30deg,var(--primary-light),var(--secondary-light));
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 80px;
+  width: 100%;
+  z-index: -1;
+`;
+
 export const DashboardContainer = styled.div`
-  height: 80vh;
+  min-height: 70vh;
 `;
 
 export const DashboardGrid = styled.div`
