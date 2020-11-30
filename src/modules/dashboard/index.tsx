@@ -119,6 +119,7 @@ const Dashboard = () => {
                 <PlayButton
                   onClick={(e) => {
                     e!.stopPropagation();
+                    history.push(`/decks/${deck.id}/play`);
                   }}
                 >
                   <img

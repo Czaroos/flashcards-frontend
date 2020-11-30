@@ -103,11 +103,11 @@ export const PlayButton = styled(MyIcon)`
 `;
 
 export const ModalContainer = styled.div`
+  top: 150px;
+  left: calc(50% - 150px);
   background: white;
-  float: none;
   display: flex;
   flex-direction: column;
-  margin: 200px auto;
   width: 300px;
   border: 1px solid rgba(0,0,0,.2);
   border-radius: .3rem;
@@ -117,10 +117,7 @@ export const ModalContainer = styled.div`
     flex-direction: column;
 
     > label {
-      margin-top: 20px;
-      margin-bottom: 10px;
-      margin-left: 20px;
-      margin-right: 20px;
+      margin: 20px 20px 10px 20px;
     }
 
     > input {
