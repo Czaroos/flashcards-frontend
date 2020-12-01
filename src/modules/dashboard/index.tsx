@@ -2,10 +2,20 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
+import { useAlert } from "@core/alert";
 
 import { Modal } from "@components";
 
-import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
+import {
+  Deck,
+  getDecks,
+  createDeck,
+  deleteDeck,
+  editDeck,
+  shareDeck,
+  Share,
+} from "@firebase";
+
 import {
   CreateDeck,
   DashboardContainer,
@@ -17,6 +27,7 @@ import {
   ModalContainer,
   MyBtn,
   PlayButton,
+  ShareButton,
   Separator,
   Title,
 } from "./style";
@@ -35,8 +46,10 @@ const Dashboard = () => {
   const [currentId, setCurrentId] = useState("");
 
   const { user } = useAuthProvider();
+  const { addAlert } = useAlert();
 
   const history = useHistory();
+  console.log(history);
 
   const handleNewDeck = (e: any) => {
     e.preventDefault();
@@ -64,7 +77,21 @@ const Dashboard = () => {
       });
 
       setDecks(newDecks);
-    } else alert(error.message);
+    } else addAlert(error.message, "danger");
+  };
+
+  const handleShare = async (id: string) => {
+    const res = await shareDeck(id);
+
+    navigator.clipboard.writeText(
+      `localhost:8080/decks/${id}/share/${res.token}`
+    );
+
+    addAlert(
+      res.infoString ||
+        "Your link is available for 24 hours and was copied to your clipboard.",
+      "info"
+    );
   };
 
   useEffect(() => {
@@ -125,7 +152,7 @@ const Dashboard = () => {
                       e!.stopPropagation();
                       deck.flashcards.length > 0
                         ? history.push(`/decks/${deck.id}/play`)
-                        : alert("This deck is empty!");
+                        : addAlert("This deck is empty!", "danger");
                     }}
                   >
                     <img
@@ -134,6 +161,18 @@ const Dashboard = () => {
                       width="27"
                     />
                   </PlayButton>
+                  <ShareButton
+                    onClick={async (e) => {
+                      e!.stopPropagation();
+                      handleShare(deck.id);
+                    }}
+                  >
+                    <img
+                      src="https://www.flaticon.com/svg/static/icons/svg/929/929610.svg"
+                      height="27"
+                      width="27"
+                    />
+                  </ShareButton>
                 </DeckWrapper>
               );
             })}

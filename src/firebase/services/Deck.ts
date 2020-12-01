@@ -1,3 +1,4 @@
+import { Share } from "firebase/models/Share";
 import { firestore } from "../config";
 
 import { Deck, EditDeckPayload } from "../models";
