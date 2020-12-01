@@ -3,7 +3,7 @@ import { useHistory } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
 
-import { Modal } from "@components";
+import { Modal, SearchBox } from "@components";
 
 import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
 import {
@@ -19,10 +19,12 @@ import {
   PlayButton,
   Separator,
   Title,
+  SearchWrapper,
 } from "./style";
 
 const Dashboard = () => {
   const [decks, setDecks] = useState<Deck[]>([]);
+  const [items, setItems] = useState<Deck[]>([]);
 
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
@@ -73,16 +75,31 @@ const Dashboard = () => {
         try {
           const decks = await getDecks(user!.decks);
           setDecks(decks);
+          setItems(decks);
         } catch (err) {
           console.log(err);
         }
       })();
   }, [user]);
 
+  const search = (value: string) => {
+    const array: Deck[] = [];
+    items.map((e: Deck) => {
+      if (e.name.toLowerCase().includes(value.toLowerCase())) {
+        array.push(e);
+      }
+    })
+    setDecks(array);
+  }
+
   return (
     <>
       <DummyBackground />
       <DashboardContainer>
+        <SearchWrapper>
+          <h1>Deck search</h1>
+          <SearchBox onChange={(e) => search(e.target.value)} />
+        </SearchWrapper>
         <DashboardGrid>
           {decks &&
             decks.map((deck, idx) => {
