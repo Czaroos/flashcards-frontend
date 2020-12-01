@@ -55,6 +55,7 @@ export const DeckWrapper = styled.div`
   }
 
   img {
+    margin: 30px auto 0 auto;
     filter: invert(24%) sepia(3%) saturate(3547%) hue-rotate(230deg) brightness(94%) contrast(84%);
 
     :hover {
@@ -68,10 +69,8 @@ export const CreateDeck = styled(DeckWrapper)`
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: none;
 
   :hover {
-    border: none;
 
     img {
       filter: invert(23%) sepia(65%) saturate(3553%) hue-rotate(262deg) brightness(82%) contrast(95%);

@@ -6,6 +6,10 @@ import { useAuthProvider } from "@core/auth";
 import { Modal } from "@components";
 
 import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
+
+import BoardImage from "@images/board.png"
+import BoardDefaultImage from "@images/boarddefault.png"
+
 import {
   CreateDeck,
   DashboardContainer,
@@ -84,6 +88,18 @@ const Dashboard = () => {
       <DummyBackground />
       <DashboardContainer>
         <DashboardGrid>
+          <CreateDeck
+            onClick={() => {
+              setAddInputValue("");
+              setOpenAdd(true);
+            }}
+          >
+            <img
+              src={BoardImage}
+              height="80"
+            />
+            <h2>Create new deck</h2>
+          </CreateDeck>
           {decks &&
             decks.map((deck, idx) => {
               return (
@@ -91,6 +107,10 @@ const Dashboard = () => {
                   key={idx}
                   onClick={() => history.push(`/decks/${deck.id}`)}
                 >
+                  <img
+                    src={BoardDefaultImage}
+                    height="80"
+                  />
                   <h2>{deck.name}</h2>
                   <EditButton
                     onClick={(e) => {
@@ -137,19 +157,6 @@ const Dashboard = () => {
                 </DeckWrapper>
               );
             })}
-          <CreateDeck
-            onClick={() => {
-              setAddInputValue("");
-              setOpenAdd(true);
-            }}
-          >
-            <img
-              src="https://www.flaticon.com/svg/static/icons/svg/992/992651.svg"
-              height="80"
-              width="80"
-            />
-            <h2>Create new deck</h2>
-          </CreateDeck>
         </DashboardGrid>
         <Modal open={openAdd} setOpen={setOpenAdd}>
           <ModalContainer>
