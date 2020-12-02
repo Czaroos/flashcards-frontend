@@ -33,11 +33,11 @@ export const shareDeck = async (deckId: string) => {
       if (timeLeft > 0) {
         const stringDate = new Date(timeLeft * 1000);
 
-        const infoString = `Your link is still available for ${stringDate
+        const info = `Your link is still available for ${stringDate
           .toUTCString()
           .substr(17, 8)} and was copied to your clipboard.`;
 
-        result = { ...share.data(), token: share.id, infoString } as Share;
+        result = { ...share.data(), token: share.id, info } as Share;
       } else {
         try {
           await share.ref.delete();

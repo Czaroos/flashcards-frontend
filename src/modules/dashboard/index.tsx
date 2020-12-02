@@ -107,7 +107,7 @@ const Dashboard = () => {
       );
 
       addAlert(
-        res.infoString ||
+        res.info ||
           "Your link is available for 24 hours and was copied to your clipboard.",
         "info"
       );
