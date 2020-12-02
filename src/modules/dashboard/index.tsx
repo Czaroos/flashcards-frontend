@@ -13,7 +13,6 @@ import {
   deleteDeck,
   editDeck,
   shareDeck,
-  Share,
 } from "@firebase";
 
 import {
@@ -49,24 +48,37 @@ const Dashboard = () => {
   const { addAlert } = useAlert();
 
   const history = useHistory();
-  console.log(history);
 
-  const handleNewDeck = (e: any) => {
+  const handleNewDeck = async (e: any) => {
     e.preventDefault();
-    createDeck(addInputValue, user!.id);
-    setOpenAdd(false);
+
+    try {
+      await createDeck(addInputValue, user!.id);
+      addAlert("Success! A new deck has been added.", "success");
+    } catch (err) {
+      addAlert(err.message, "danger");
+    } finally {
+      setOpenAdd(false);
+    }
   };
 
-  const handleEditDeck = (e: any) => {
+  const handleEditDeck = async (e: any) => {
     e.preventDefault();
-    handleEdit(currentId, editInputValue);
-    setOpenEdit(false);
+
+    try {
+      await handleEdit(currentId, editInputValue);
+      addAlert("Success! Editing was completed.", "success");
+    } catch (err) {
+      addAlert(err.message, "danger");
+    } finally {
+      setOpenEdit(false);
+    }
   };
 
   const handleEdit = async (id: string, name: string) => {
-    const error = await editDeck({ id, userId: user!.id, name });
+    try {
+      await editDeck({ id, userId: user!.id, name });
 
-    if (!error) {
       const newDecks = decks.map((deck) => {
         if (deck.id === id) {
           return {
@@ -77,21 +89,31 @@ const Dashboard = () => {
       });
 
       setDecks(newDecks);
-    } else addAlert(error.message, "danger");
+    } catch (err) {
+      addAlert(err.message, "danger");
+    }
   };
 
   const handleShare = async (id: string) => {
-    const res = await shareDeck(id);
+    try {
+      const deck = await getDecks([id]);
+      if (deck[0].flashcards.length === 0)
+        throw new Error("You cannot share an empty deck.");
 
-    navigator.clipboard.writeText(
-      `localhost:8080/decks/${id}/share/${res.token}`
-    );
+      const res = await shareDeck(id);
 
-    addAlert(
-      res.infoString ||
-        "Your link is available for 24 hours and was copied to your clipboard.",
-      "info"
-    );
+      navigator.clipboard.writeText(
+        `localhost:8080/decks/${id}/share/${res.token}`
+      );
+
+      addAlert(
+        res.infoString ||
+          "Your link is available for 24 hours and was copied to your clipboard.",
+        "info"
+      );
+    } catch (err) {
+      addAlert(err.message, "danger");
+    }
   };
 
   useEffect(() => {
@@ -101,7 +123,7 @@ const Dashboard = () => {
           const decks = await getDecks(user!.decks);
           setDecks(decks);
         } catch (err) {
-          console.log(err);
+          addAlert(err.message, "danger");
         }
       })();
   }, [user]);
@@ -173,6 +195,7 @@ const Dashboard = () => {
                       width="27"
                     />
                   </ShareButton>
+                  <h6>{deck.shared ? "SHARED" : ""}</h6>
                 </DeckWrapper>
               );
             })}

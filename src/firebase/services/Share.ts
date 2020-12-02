@@ -1,6 +1,10 @@
-import { firestore } from "../config";
-
-import { Share } from "../models";
+import {
+  firestore,
+  Flashcard,
+  Share,
+  getDecks,
+  getFlashcards,
+} from "@firebase";
 
 export const shareDeck = async (deckId: string) => {
   const share = await firestore
@@ -41,7 +45,7 @@ export const shareDeck = async (deckId: string) => {
 
           result = { ...newShare, token: shareRef.id } as Share;
         } catch (err) {
-          return err;
+          throw new Error(err.message);
         }
       }
     });
@@ -52,9 +56,77 @@ export const shareDeck = async (deckId: string) => {
 
       return { ...newShare, token: shareRef.id } as Share;
     } catch (err) {
-      return err;
+      throw new Error(err.message);
     }
   }
 };
 
-export const AcceptShareDeck = async (deckId: string) => {};
+export const checkToken = async (token: string) => {
+  const share = await firestore.doc(`shares/${token}`).get();
+
+  if (share.exists) {
+    const { expires } = share.data()!;
+
+    const now = Math.floor(new Date().getTime() / 1000);
+
+    const timeLeft = expires - now;
+
+    if (timeLeft < 0) {
+      throw new Error("Token has expired.");
+    } else {
+      return share;
+    }
+  } else {
+    throw new Error(`Token doesn't exist.`);
+  }
+};
+
+export const AcceptShareDeck = async (deckId: string, userId?: string) => {
+  try {
+    if (!userId)
+      throw new Error("You must be logged in to perform this action.");
+
+    const userRef = firestore.doc(`users/${userId}`);
+    const deckRef = firestore.doc(`decks/${deckId}`);
+
+    const user = await userRef.get();
+
+    const userData = user.data()!;
+
+    const deck = await deckRef.get();
+    const deckData = deck.data()!;
+
+    const userDecks = await getDecks(userData.decks);
+    const deckExists = userDecks.filter((deck) => deck.name === deckData.name);
+
+    if (deckExists.length > 0)
+      throw new Error(`Deck ${deckData.name} already exists in your library.`);
+
+    const flashcards = await getFlashcards(deckData.flashcards);
+
+    const newFlashcards: String[] = await Promise.all(
+      flashcards.map(async (flashcard: Flashcard) => {
+        const flashcardRef = await firestore
+          .collection("flashcards")
+          .add(flashcard);
+        return flashcardRef.id as String;
+      })
+    );
+
+    const newDeck = {
+      ...deckData,
+      flashcards: newFlashcards,
+      shared: true,
+    };
+    const newDeckRef = await firestore.collection("decks").add(newDeck);
+
+    userRef.set({
+      ...userData,
+      decks: [...userData.decks, newDeckRef.id],
+    });
+
+    return `${deckData.name} was added to your library.`;
+  } catch (err) {
+    throw new Error(err.message);
+  }
+};

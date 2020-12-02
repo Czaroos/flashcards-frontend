@@ -6,6 +6,7 @@ export interface Deck {
   flashcards: string[];
   editedBy?: string;
   editedAt?: string;
+  shared?: boolean;
 }
 
 export interface EditDeckPayload {

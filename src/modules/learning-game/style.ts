@@ -171,6 +171,7 @@ export const InitialView = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding: 0 32px;
 
   > h1 {
     margin: 20px 0;

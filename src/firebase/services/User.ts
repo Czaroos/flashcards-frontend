@@ -1,4 +1,4 @@
-import { firestore } from "../config";
+import { firestore } from "@firebase";
 
 export const createUser = async (
   user: firebase.default.User | null,

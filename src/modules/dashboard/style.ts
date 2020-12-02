@@ -42,6 +42,13 @@ export const DeckWrapper = styled.div`
   color: #212227;
   cursor: pointer;
   border-bottom: 3px solid #802fcd;
+  position: relative;
+
+  > h6 {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+  }
 
   :hover {
     transition: border 0.5s ease-out;
