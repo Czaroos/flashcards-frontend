@@ -5,13 +5,13 @@ import { InputContainer } from "./style";
 import { InputProps } from "./model";
 
 export const Input = ({
-  onChange = () => {},
+  onChange = () => { },
   width,
   value = "",
   placeholder = "",
   ...rest
 }: InputProps) => {
-  const [time, setTime] = useState(setTimeout(() => {}, 500));
+  const [time, setTime] = useState(setTimeout(() => { }, 500));
 
   const handleOnChange = (val: string) => {
     if (time) {
@@ -30,6 +30,7 @@ export const Input = ({
       onChange={(e) => handleOnChange(e.target.value)}
       defaultValue={value}
       placeholder={placeholder}
+      spellCheck={false}
       {...rest}
     />
   );

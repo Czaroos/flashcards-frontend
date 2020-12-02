@@ -11,6 +11,16 @@ export const DummyBackground = styled.div`
   z-index: -1;
 `;
 
+export const SearchWrapper = styled.div`
+  width: 300px;
+  margin: 50px auto 0 auto;
+  
+  h1{
+    font-size: 25px;
+    text-align: center;
+  }
+`;
+
 export const DashboardContainer = styled.div`
   min-height: 70vh;
 `;
