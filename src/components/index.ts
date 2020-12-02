@@ -7,8 +7,6 @@ export * from "./flashcard";
 export * from "./modal";
 export * from "./icon-button";
 export * from "./no-page";
-export * from "./sign-up";
-export * from "./sign-in";
 export * from "./navbar";
 export * from "./search-box";
 export * from "./footer";
