@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-export const LoadContainer = styled.div`
-
-`;
-
 export const Load = styled.div`
     display: inline-block;
     position: relative;
