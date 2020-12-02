@@ -1,7 +1,9 @@
 import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 
-import { Avatar, Button, SignIn, SignUp } from "@components";
+import { Avatar, Button } from "@components";
+import { SignIn } from "@modules/sign-in"
+import { SignUp } from "@modules/sign-up"
 
 import { useAuthProvider } from "@core/auth";
 

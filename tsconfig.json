@@ -5,22 +5,50 @@
     "target": "es5",
     "module": "esnext",
     "moduleResolution": "node",
-    "lib": ["es6", "dom"],
+    "lib": [
+      "es6",
+      "dom"
+    ],
     "rootDir": ".",
     "declaration": false,
     "sourceMap": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "./src",
     "paths": {
-      "@fonts/*": ["assets/fonts/*"],
-      "@styles/*": ["styles/*"],
-      "@components": ["components"],
-      "@firebase": ["firebase"],
-      "@core/*": ["core/*"],
-      "@images/*": ["assets/images/*"],
-      "@icons": ["assets/icons"],
+      "@fonts/*": [
+        "assets/fonts/*"
+      ],
+      "@styles/*": [
+        "styles/*"
+      ],
+      "@components": [
+        "components"
+      ],
+      "@firebase": [
+        "firebase"
+      ],
+      "@core/*": [
+        "core/*"
+      ],
+      "@modules/*": [
+        "modules/*"
+      ],
+      "@images/*": [
+        "assets/images/*"
+      ],
+      "@icons": [
+        "assets/icons"
+      ],
     },
   },
-  "include": ["./src", "./stories"],
-  "exclude": ["node_modules", "**/*.story.*", "**/tests", "dist"]
+  "include": [
+    "./src",
+    "./stories"
+  ],
+  "exclude": [
+    "node_modules",
+    "**/*.story.*",
+    "**/tests",
+    "dist"
+  ]
 }
