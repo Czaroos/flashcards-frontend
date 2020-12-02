@@ -9,7 +9,7 @@ export const AlertContainer = styled.div<AlertStyleProps>`
     margin-bottom: 15px;
     border-radius: 5px;
     transition: margin-left linear 0.7s;
-    margin-left: ${({ visibility }) => visibility ? '520px' : '0'};
+    margin-left: ${({ alertVisibility }) => alertVisibility ? '520px' : '0'};
     display: grid;
     align-items: center;
     padding-left: 15px;
