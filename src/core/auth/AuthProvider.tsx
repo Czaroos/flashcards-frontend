@@ -1,7 +1,7 @@
 import React, { createContext, ReactNode, useContext } from "react";
 import { withRouter, RouteComponentProps } from "react-router";
 
-import { AlertContext } from "@core/alert"
+import { AlertContext } from "@core/alert";
 
 import { auth, createUser, User, signInWithGoogle } from "@firebase";
 
@@ -36,21 +36,15 @@ class Provider extends React.Component<Props, typeof STATE> {
             >
           ) => {
             const { email, displayName, createdAt, decks } = snapshot.data()!;
-            this.setState(
-              {
-                user: {
-                  id: snapshot.id,
-                  email,
-                  displayName,
-                  createdAt,
-                  decks,
-                },
-              }
-              // () => {
-              //   this.props.history.location.pathname !== "/" &&
-              //     this.props.history.push(`/dashboard/${snapshot.id}`);
-              // }
-            );
+            this.setState({
+              user: {
+                id: snapshot.id,
+                email,
+                displayName,
+                createdAt,
+                decks,
+              },
+            });
           }
         );
       } else {
@@ -67,21 +61,21 @@ class Provider extends React.Component<Props, typeof STATE> {
 
       this.setState({ user: null }, () => {
         this.props.history.push(`/`);
-        this.context.addAlert("You have been logged out", 'info')
+        this.context.addAlert("You have been logged out", "info");
       });
     } catch {
       this.setState({ ...STATE });
-      this.context.addAlert("Logout failed", 'danger')
+      this.context.addAlert("Logout failed", "danger");
     }
   };
 
   logIn = async (email: string, password: string) => {
     try {
       await auth.signInWithEmailAndPassword(email, password);
-      this.context.addAlert("Successful login!", 'success')
+      this.context.addAlert("Successful login!", "success");
     } catch {
       this.setState({ ...STATE });
-      this.context.addAlert("Login failed", 'danger')
+      this.context.addAlert("Login failed", "danger");
     }
   };
 
@@ -100,9 +94,10 @@ class Provider extends React.Component<Props, typeof STATE> {
 
   loginViaGoogle = () => {
     signInWithGoogle().then(
-      () => this.context.addAlert("Successful login!", 'success'),
-      () => this.context.addAlert("Login failed", 'danger'))
-  }
+      () => this.context.addAlert("Successful login!", "success"),
+      () => this.context.addAlert("Login failed", "danger")
+    );
+  };
 
   componentWillUnmount() {
     this._unsubscribeFromAuth();
