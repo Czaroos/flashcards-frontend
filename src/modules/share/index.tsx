@@ -41,7 +41,7 @@ const Share = () => {
   const handleAccept = async () => {
     try {
       await AcceptShareDeck(deckId, user!.id || undefined);
-      history.push(`/dashboard/${user!.id}`);
+      history.push(`/dashboard`);
       addAlert(
         `Success! Deck ${deck!.name} was added to your library.`,
         "success"
@@ -52,7 +52,7 @@ const Share = () => {
   };
 
   const handleReject = () => {
-    user ? history.push(`/dashboard/${user!.id}`) : history.push("/");
+    user ? history.push(`/dashboard`) : history.push("/");
   };
 
   return (

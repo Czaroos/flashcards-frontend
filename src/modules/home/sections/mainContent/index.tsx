@@ -3,9 +3,15 @@ import { useHistory } from "react-router-dom";
 import { useAuthProvider } from "@core/auth";
 import { useAlert } from "@core/alert";
 
-import { ContentImage } from "@icons"
+import { ContentImage } from "@icons";
 
-import { CreateFlashcardContainer, Inner, Content, Aside, StyledButton } from "./style";
+import {
+  CreateFlashcardContainer,
+  Inner,
+  Content,
+  Aside,
+  StyledButton,
+} from "./style";
 
 export const MainContent = () => {
   const history = useHistory();
@@ -14,12 +20,12 @@ export const MainContent = () => {
 
   const handle = () => {
     if (user) {
-      history.push(`/dashboard/${user.id}`)
+      history.push(`/dashboard`);
       return;
     }
 
-    addAlert("You must be logged in", "info");
-  }
+    addAlert("You must be logged in", "warning");
+  };
 
   return (
     <CreateFlashcardContainer>
@@ -28,8 +34,8 @@ export const MainContent = () => {
           <Aside>
             <h1>Create your own flashcards today!</h1>
             <p>
-              We bring you brand new look on flashcards with our tools and features.
-              Check them out now!
+              We bring you brand new look on flashcards with our tools and
+              features. Check them out now!
             </p>
             <StyledButton onClick={handle} variant="transparent">
               Let's go!
@@ -38,7 +44,6 @@ export const MainContent = () => {
           <ContentImage />
         </Content>
       </Inner>
-
     </CreateFlashcardContainer>
   );
 };

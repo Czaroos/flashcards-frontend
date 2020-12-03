@@ -2,8 +2,8 @@ import React, { useCallback, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { Avatar, Button } from "@components";
-import { SignIn } from "@modules/sign-in"
-import { SignUp } from "@modules/sign-up"
+import { SignIn } from "@modules/sign-in";
+import { SignUp } from "@modules/sign-up";
 
 import { useAuthProvider } from "@core/auth";
 
@@ -41,7 +41,7 @@ export const Navbar = () => {
         />
         <nav>
           <ul>
-            <li onClick={() => history.push(`/`)} >HOME</li>
+            <li onClick={() => history.push(`/`)}>HOME</li>
             <li onClick={() => history.push(`/about`)}>ABOUT</li>
           </ul>
         </nav>
@@ -50,22 +50,26 @@ export const Navbar = () => {
             <>
               <Avatar
                 displayName={user.displayName}
-                onClick={() => history.push(`/dashboard/${user.id}`)}
+                onClick={() => history.push(`/dashboard`)}
               />
               <StyledButton width="75" onClick={logOut} variant="transparent">
                 <img src={LogOut} height="20" width="20" />
               </StyledButton>
             </>
           ) : (
-              <>
-                <Button variant="transparent" onClick={handleSignIn}>
-                  SIGN IN
+            <>
+              <Button variant="transparent" onClick={handleSignIn}>
+                SIGN IN
               </Button>
-                <StyledButton variant="transparent" width="190px" onClick={handleSignUp}>
-                  SIGN UP
+              <StyledButton
+                variant="transparent"
+                width="190px"
+                onClick={handleSignUp}
+              >
+                SIGN UP
               </StyledButton>
-              </>
-            )}
+            </>
+          )}
         </Actions>
 
         <Sidebar>Icon Button</Sidebar>

@@ -12,7 +12,7 @@ const ModulesRouter = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/dashboard/:userId" component={Dashboard} />
+      <Route exact path="/dashboard" component={Dashboard} />
       <Route exact path="/decks/:deckId" component={DeckDashboard} />
       <Route exact path="/decks/:deckId/play" component={LearningGame} />
       <Route exact path="/decks/:deckId/share/:token" component={Share} />
