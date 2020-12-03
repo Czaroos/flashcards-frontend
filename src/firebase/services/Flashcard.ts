@@ -116,3 +116,15 @@ export const editFlashcard = async ({
     return err;
   }
 };
+
+export const getRandomizedFlashcards = async (flashcardsIds: string[]) => {
+  let flashcards = await getFlashcards(flashcardsIds);
+
+  for (let i = flashcards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [flashcards[i], flashcards[j]] = [flashcards[j], flashcards[i]];
+  }
+
+  console.log(flashcards);
+  return flashcards;
+};
