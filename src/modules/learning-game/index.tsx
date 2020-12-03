@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams, useHistory, useLocation } from "react-router-dom";
 
 import { Wave } from "@icons";
 
@@ -24,6 +24,10 @@ const LearningGame = () => {
 
   const { deckId } = useParams<Params>();
   const history = useHistory();
+  const { search } = useLocation();
+
+  const value = search.split("=")[1];
+  const key = search.split("=")[0];
 
   const gameContainerRef = useRef<HTMLDivElement>(null);
 
@@ -31,7 +35,10 @@ const LearningGame = () => {
     document.body.style.cursor = "progress";
     (async () => {
       const deck = await getDecks([deckId]);
-      const flashcards = await getRandomizedFlashcards(deck[0].flashcards);
+      const flashcards = await getRandomizedFlashcards(
+        deck[0].flashcards,
+        key === "?limit" ? Number(value) : undefined
+      );
 
       const markedFlashcards: MarkedFlashcard[] = flashcards.map(
         (flashcard: Flashcard) => {

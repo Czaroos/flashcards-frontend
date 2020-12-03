@@ -37,14 +37,17 @@ import {
 const Dashboard = () => {
   const [decks, setDecks] = useState<Deck[]>([]);
   const [items, setItems] = useState<Deck[]>([]);
+  const [currentDeck, setCurrentDeck] = useState<Deck>();
 
   const [openAdd, setOpenAdd] = useState(false);
   const [openEdit, setOpenEdit] = useState(false);
   const [openDelete, setOpenDelete] = useState(false);
+  const [openPlay, setOpenPlay] = useState(false);
 
   const [addInputValue, setAddInputValue] = useState("");
   const [editInputValue, setEditInputValue] = useState("");
   const [deleteInputValue, setDeleteInputValue] = useState("");
+  const [limitInput, setLimitInput] = useState("");
 
   const [currentId, setCurrentId] = useState("");
 
@@ -112,12 +115,18 @@ const Dashboard = () => {
 
       addAlert(
         res.info ||
-        "Your link is available for 24 hours and was copied to your clipboard.",
+          "Your link is available for 24 hours and was copied to your clipboard.",
         "info"
       );
     } catch (err) {
       addAlert(err.message, "danger");
     }
+  };
+
+  const handlePlay = async (id: string) => {
+    setOpenPlay(true);
+    const deck = await getDecks([id]);
+    setCurrentDeck(deck[0]);
   };
 
   useEffect(() => {
@@ -139,9 +148,9 @@ const Dashboard = () => {
       if (e.name.toLowerCase().includes(value.toLowerCase())) {
         array.push(e);
       }
-    })
+    });
     setDecks(array);
-  }
+  };
 
   return (
     <>
@@ -198,10 +207,10 @@ const Dashboard = () => {
                     />
                   </DeleteButton>
                   <PlayButton
-                    onClick={(e) => {
+                    onClick={async (e) => {
                       e!.stopPropagation();
                       deck.flashcards.length > 0
-                        ? history.push(`/decks/${deck.id}/play`)
+                        ? await handlePlay(deck.id)
                         : addAlert("This deck is empty!", "danger");
                     }}
                   >
@@ -305,6 +314,53 @@ const Dashboard = () => {
             >
               Confirm
             </MyBtn>
+          </ModalContainer>
+        </Modal>
+
+        <Modal open={openPlay} setOpen={setOpenPlay}>
+          <ModalContainer>
+            <Title>
+              <div>How many cards would you like to learn?</div>
+              <img
+                onClick={() => setOpenPlay(false)}
+                src="https://www.flaticon.com/svg/static/icons/svg/447/447047.svg"
+                alt="close"
+                height="16"
+                width="16"
+              />
+            </Title>
+            <Separator />
+            <form>
+              <label>{`Limit (MAX ${currentDeck?.flashcards.length})`}</label>
+              <input
+                type="text"
+                value={limitInput}
+                onChange={(e: any) =>
+                  !isNaN(e.target.value) && setLimitInput(e.target.value)
+                }
+              />
+              <Separator />
+              <MyBtn
+                onClick={() => {
+                  history.push(
+                    `/decks/${currentDeck!.id}/play${
+                      Number(limitInput.trim()) > currentDeck!.flashcards.length
+                        ? `?limit=${currentDeck!.flashcards.length}`
+                        : limitInput.trim()
+                        ? `?limit=${limitInput.trim()}`
+                        : ""
+                    }`
+                  );
+                  Number(limitInput.trim()) > currentDeck!.flashcards.length &&
+                    addAlert(
+                      `Flashcards limit set to a maximum value of ${currentDeck?.flashcards.length}.`,
+                      "warning"
+                    );
+                }}
+              >
+                Confirm
+              </MyBtn>
+            </form>
           </ModalContainer>
         </Modal>
       </DashboardContainer>
