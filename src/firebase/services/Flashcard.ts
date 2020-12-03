@@ -1,6 +1,10 @@
-import { firestore } from "../config";
-
-import { Color, Flashcard, Variant, EditFlashcardPayload } from "../models";
+import {
+  firestore,
+  Color,
+  Flashcard,
+  Variant,
+  EditFlashcardPayload,
+} from "@firebase";
 
 export const createFlashcard = async (
   deckId: string,

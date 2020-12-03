@@ -2,10 +2,19 @@ import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 
 import { useAuthProvider } from "@core/auth";
+import { useAlert } from "@core/alert";
 
 import { Modal, SearchBox } from "@components";
 
-import { Deck, getDecks, createDeck, deleteDeck, editDeck } from "@firebase";
+import {
+  Deck,
+  getDecks,
+  createDeck,
+  deleteDeck,
+  editDeck,
+  shareDeck,
+} from "@firebase";
+
 import {
   CreateDeck,
   DashboardContainer,
@@ -17,6 +26,7 @@ import {
   ModalContainer,
   MyBtn,
   PlayButton,
+  ShareButton,
   Separator,
   Title,
   SearchWrapper,
@@ -37,25 +47,40 @@ const Dashboard = () => {
   const [currentId, setCurrentId] = useState("");
 
   const { user } = useAuthProvider();
+  const { addAlert } = useAlert();
 
   const history = useHistory();
 
-  const handleNewDeck = (e: any) => {
+  const handleNewDeck = async (e: any) => {
     e.preventDefault();
-    createDeck(addInputValue, user!.id);
-    setOpenAdd(false);
+
+    try {
+      await createDeck(addInputValue, user!.id);
+      addAlert("Success! A new deck has been added.", "success");
+    } catch (err) {
+      addAlert(err.message, "danger");
+    } finally {
+      setOpenAdd(false);
+    }
   };
 
-  const handleEditDeck = (e: any) => {
+  const handleEditDeck = async (e: any) => {
     e.preventDefault();
-    handleEdit(currentId, editInputValue);
-    setOpenEdit(false);
+
+    try {
+      await handleEdit(currentId, editInputValue);
+      addAlert("Success! Editing was completed.", "success");
+    } catch (err) {
+      addAlert(err.message, "danger");
+    } finally {
+      setOpenEdit(false);
+    }
   };
 
   const handleEdit = async (id: string, name: string) => {
-    const error = await editDeck({ id, userId: user!.id, name });
+    try {
+      await editDeck({ id, userId: user!.id, name });
 
-    if (!error) {
       const newDecks = decks.map((deck) => {
         if (deck.id === id) {
           return {
@@ -66,7 +91,31 @@ const Dashboard = () => {
       });
 
       setDecks(newDecks);
-    } else alert(error.message);
+    } catch (err) {
+      addAlert(err.message, "danger");
+    }
+  };
+
+  const handleShare = async (id: string) => {
+    try {
+      const deck = await getDecks([id]);
+      if (deck[0].flashcards.length === 0)
+        throw new Error("You cannot share an empty deck.");
+
+      const res = await shareDeck(id);
+
+      navigator.clipboard.writeText(
+        `localhost:8080/decks/${id}/share/${res.token}`
+      );
+
+      addAlert(
+        res.info ||
+          "Your link is available for 24 hours and was copied to your clipboard.",
+        "info"
+      );
+    } catch (err) {
+      addAlert(err.message, "danger");
+    }
   };
 
   useEffect(() => {
@@ -77,7 +126,7 @@ const Dashboard = () => {
           setDecks(decks);
           setItems(decks);
         } catch (err) {
-          console.log(err);
+          addAlert(err.message, "danger");
         }
       })();
   }, [user]);
@@ -142,7 +191,7 @@ const Dashboard = () => {
                       e!.stopPropagation();
                       deck.flashcards.length > 0
                         ? history.push(`/decks/${deck.id}/play`)
-                        : alert("This deck is empty!");
+                        : addAlert("This deck is empty!", "danger");
                     }}
                   >
                     <img
@@ -151,6 +200,19 @@ const Dashboard = () => {
                       width="27"
                     />
                   </PlayButton>
+                  <ShareButton
+                    onClick={async (e) => {
+                      e!.stopPropagation();
+                      handleShare(deck.id);
+                    }}
+                  >
+                    <img
+                      src="https://www.flaticon.com/svg/static/icons/svg/929/929610.svg"
+                      height="27"
+                      width="27"
+                    />
+                  </ShareButton>
+                  <h6>{deck.shared ? "SHARED" : ""}</h6>
                 </DeckWrapper>
               );
             })}

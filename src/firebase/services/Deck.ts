@@ -1,6 +1,4 @@
-import { firestore } from "../config";
-
-import { Deck, EditDeckPayload } from "../models";
+import { firestore, Deck, EditDeckPayload } from "@firebase";
 
 export const createDeck = async (name: string, userId: string) => {
   const deck = await firestore
@@ -10,8 +8,7 @@ export const createDeck = async (name: string, userId: string) => {
     .get();
 
   if (!deck.empty) {
-    alert("Deck with this name already exists.");
-    return;
+    throw new Error("Deck with this name already exists.");
   }
 
   const authors: string[] = [userId];
@@ -47,14 +44,16 @@ export const getDecks = async (decksIds: string[]) => {
     const decks = Promise.all(
       decksIds.map(async (id) => {
         const deck = await firestore.doc(`decks/${id}`).get();
-        const deckObj = Object.assign({}, { id: deck.id }, deck.data());
-        return deckObj as Deck;
+        if (deck.exists) {
+          const deckObj = Object.assign({}, { id: deck.id }, deck.data());
+          return deckObj as Deck;
+        } else throw new Error(`This deck doesn't exist.`);
       })
     );
 
     return decks;
   } catch (err) {
-    return err;
+    throw new Error(`Something went wrong.`);
   }
 };
 
@@ -71,6 +70,15 @@ export const deleteDeck = async (deckId: string) => {
         ...user.data(),
         decks: decks.filter((id: string) => id !== deckId),
       });
+    });
+
+    const shares = await firestore
+      .collection("shares")
+      .where("deckId", "==", deckId)
+      .get();
+
+    shares.forEach(async (share) => {
+      await share.ref.delete();
     });
 
     const { flashcards } = await (

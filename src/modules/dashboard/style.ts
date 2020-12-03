@@ -2,7 +2,11 @@ import { Button } from "@components";
 import styled from "styled-components";
 
 export const DummyBackground = styled.div`
-  background-image: linear-gradient(30deg,var(--primary-light),var(--secondary-light));
+  background-image: linear-gradient(
+    30deg,
+    var(--primary-light),
+    var(--secondary-light)
+  );
   position: absolute;
   top: 0;
   left: 0;
@@ -48,10 +52,17 @@ export const DeckWrapper = styled.div`
   color: #212227;
   cursor: pointer;
   border-bottom: 3px solid #802fcd;
+  position: relative;
+
+  > h6 {
+    position: absolute;
+    bottom: 0;
+    left: 8px;
+  }
 
   :hover {
     transition: border 0.5s ease-out;
-    border-bottom: 3px solid #20CAE5;
+    border-bottom: 3px solid #20cae5;
   }
 
   > h2 {
@@ -65,10 +76,12 @@ export const DeckWrapper = styled.div`
   }
 
   img {
-    filter: invert(24%) sepia(3%) saturate(3547%) hue-rotate(230deg) brightness(94%) contrast(84%);
+    filter: invert(24%) sepia(3%) saturate(3547%) hue-rotate(230deg)
+      brightness(94%) contrast(84%);
 
     :hover {
-      filter: invert(28%) sepia(52%) saturate(2770%) hue-rotate(255deg) brightness(84%) contrast(104%);
+      filter: invert(28%) sepia(52%) saturate(2770%) hue-rotate(255deg)
+        brightness(84%) contrast(104%);
     }
   }
 `;
@@ -84,14 +97,15 @@ export const CreateDeck = styled(DeckWrapper)`
     border: none;
 
     img {
-      filter: invert(23%) sepia(65%) saturate(3553%) hue-rotate(262deg) brightness(82%) contrast(95%);
+      filter: invert(23%) sepia(65%) saturate(3553%) hue-rotate(262deg)
+        brightness(82%) contrast(95%);
     }
 
     h2 {
       color: #802fcd;
     }
   }
-  
+
   > h2 {
     align-self: center;
     margin-top: 14px;
@@ -103,7 +117,7 @@ export const MyIcon = styled(Button)`
   height: 0px;
   padding: 0;
   cursor: pointer;
-  
+
   :hover {
     opacity: 1;
   }
@@ -126,6 +140,11 @@ export const PlayButton = styled(MyIcon)`
   grid-row-start: 1;
 `;
 
+export const ShareButton = styled(MyIcon)`
+  grid-column-start: 2;
+  grid-row-start: 1;
+`;
+
 export const ModalContainer = styled.div`
   top: 150px;
   left: calc(50% - 150px);
@@ -133,8 +152,8 @@ export const ModalContainer = styled.div`
   display: flex;
   flex-direction: column;
   width: 300px;
-  border: 1px solid rgba(0,0,0,.2);
-  border-radius: .3rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0.3rem;
 
   > form {
     display: flex;
@@ -170,23 +189,23 @@ export const MyBtn = styled(Button)`
 `;
 
 export const Title = styled.div`
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px;
 
-    > img {
-      cursor: pointer;
+  > img {
+    cursor: pointer;
 
-      :hover {
-        filter: drop-shadow(2px 4px 6px black);
-      }
+    :hover {
+      filter: drop-shadow(2px 4px 6px black);
     }
+  }
 
-    > div {
-      font-weight: bold;
-      font-size: 20px;
-    }
+  > div {
+    font-weight: bold;
+    font-size: 20px;
+  }
 `;
 
 export const Separator = styled.div`
