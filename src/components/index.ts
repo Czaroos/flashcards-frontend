@@ -4,6 +4,7 @@ export * from "./board";
 export * from "./button";
 export * from "./dropdown-menu";
 export * from "./flashcard";
+export * from "./loading";
 export * from "./modal";
 export * from "./icon-button";
 export * from "./no-page";
