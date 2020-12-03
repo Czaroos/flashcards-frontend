@@ -5,7 +5,7 @@ import { Wave } from "@icons";
 
 import { Button } from "@components";
 
-import { Flashcard, getDecks, getFlashcards } from "@firebase";
+import { Flashcard, getDecks, getRandomizedFlashcards } from "@firebase";
 
 import { Params, MarkedFlashcard } from "./model";
 
@@ -31,7 +31,7 @@ const LearningGame = () => {
     document.body.style.cursor = "progress";
     (async () => {
       const deck = await getDecks([deckId]);
-      const flashcards = await getFlashcards(deck[0].flashcards);
+      const flashcards = await getRandomizedFlashcards(deck[0].flashcards);
 
       const markedFlashcards: MarkedFlashcard[] = flashcards.map(
         (flashcard: Flashcard) => {
