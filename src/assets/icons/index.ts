@@ -1,3 +1,4 @@
+export * from "./add-board";
 export * from "./build";
 export * from "./google-icon";
 export * from "./content-image";

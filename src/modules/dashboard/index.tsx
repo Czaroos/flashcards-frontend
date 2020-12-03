@@ -15,6 +15,8 @@ import {
   shareDeck,
 } from "@firebase";
 
+import { AddBoard } from "@icons";
+
 import {
   CreateDeck,
   DashboardContainer,
@@ -110,7 +112,7 @@ const Dashboard = () => {
 
       addAlert(
         res.info ||
-          "Your link is available for 24 hours and was copied to your clipboard.",
+        "Your link is available for 24 hours and was copied to your clipboard.",
         "info"
       );
     } catch (err) {
@@ -150,6 +152,15 @@ const Dashboard = () => {
           <SearchBox onChange={(e) => search(e.target.value)} />
         </SearchWrapper>
         <DashboardGrid>
+          <CreateDeck
+            onClick={() => {
+              setAddInputValue("");
+              setOpenAdd(true);
+            }}
+          >
+            <AddBoard />
+            <h2>Create new deck</h2>
+          </CreateDeck>
           {decks &&
             decks.map((deck, idx) => {
               return (
@@ -216,19 +227,6 @@ const Dashboard = () => {
                 </DeckWrapper>
               );
             })}
-          <CreateDeck
-            onClick={() => {
-              setAddInputValue("");
-              setOpenAdd(true);
-            }}
-          >
-            <img
-              src="https://www.flaticon.com/svg/static/icons/svg/992/992651.svg"
-              height="80"
-              width="80"
-            />
-            <h2>Create new deck</h2>
-          </CreateDeck>
         </DashboardGrid>
         <Modal open={openAdd} setOpen={setOpenAdd}>
           <ModalContainer>

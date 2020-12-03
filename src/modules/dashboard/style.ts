@@ -73,6 +73,11 @@ export const DeckWrapper = styled.div`
     word-break: break-word;
     text-align: center;
     align-self: flex-end;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: 0 auto;
+    width: 80%;
   }
 
   img {
@@ -92,6 +97,11 @@ export const CreateDeck = styled(DeckWrapper)`
   align-items: center;
   justify-content: center;
   border: none;
+
+  svg{
+    width: 60px;
+    height: 60px;
+  }
 
   :hover {
     border: none;
