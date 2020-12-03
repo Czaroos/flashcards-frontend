@@ -58,12 +58,6 @@ export const GlobalStyle = createGlobalStyle`
     --secondary: #2D3935;
     --secondary-light: #9D00C6;
 
-    /* --details: #D77A61;
-    --primary-light: #EEF1EF;
-    --primary: #C3CBD5;
-    --primary-dark: #5E6572;
-    --secondary: #2D3935; */
-
     --blue: #A4D3EE;
     --error: #FF6961;
     --ok: #50C878;
@@ -81,7 +75,7 @@ export const GlobalStyle = createGlobalStyle`
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: "Roboto";
+      font-family: "Roboto", sans-serif;
       outline: none;
       transition: all 0.25s;
       text-rendering: optimizeLegibility;
