@@ -7,7 +7,7 @@ import { AlertsContainer } from "./style"
 type Alert = {
     msg: string,
     id: number,
-    visibility: boolean,
+    alertVisibility: boolean,
     variant?: AlertVariant
 }
 
@@ -33,7 +33,7 @@ export class AlertProvider extends React.Component<Props, typeof STATE>{
     addAlert = (msg: string, variant: AlertVariant) => {
         const id = this.state.alerts.length > 0 ? this.state.alerts[this.state.alerts.length - 1].id + 1 : 0;
         this.setState({
-            alerts: [...this.state.alerts, { msg: msg, id: id, visibility: false, variant: variant }]
+            alerts: [...this.state.alerts, { msg: msg, id: id, alertVisibility: false, variant: variant }]
         }, async () => {
             await this.sleep(3000);
             this.removeAlert(id);
@@ -53,7 +53,7 @@ export class AlertProvider extends React.Component<Props, typeof STATE>{
         let items = this.state.alerts;
         items.map(e => {
             if (e.id === id) {
-                e.visibility = !e.visibility
+                e.alertVisibility = !e.alertVisibility
             }
         })
         this.setState({
@@ -71,8 +71,8 @@ export class AlertProvider extends React.Component<Props, typeof STATE>{
             <AlertContext.Provider value={this.state}>
                 {this.state.alerts.length > 0 &&
                     <AlertsContainer>
-                        {this.state.alerts.map((e) => {
-                            return <Alert key={e.id} msg={e.msg} visibility={e.visibility} variant={e.variant} />
+                        {this.state.alerts.map((e: Alert) => {
+                            return <Alert key={e.id} msg={e.msg} alertVisibility={e.alertVisibility} variant={e.variant} />
                         })}
                     </AlertsContainer>}
                 {this.props.children}

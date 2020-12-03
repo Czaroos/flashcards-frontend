@@ -1,7 +1,7 @@
 export type AlertVariant = 'info' | 'success' | 'warning' | 'danger'
 
 export interface AlertStyleProps {
-    visibility: boolean,
+    alertVisibility: boolean,
     variant?: AlertVariant
 }
 

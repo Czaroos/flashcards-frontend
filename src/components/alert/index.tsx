@@ -5,13 +5,13 @@ import { AlertProps } from "./model";
 import { AlertContainer } from "./style"
 
 
-export const Alert = ({ msg, visibility, variant = 'info' }: AlertProps): JSX.Element => {
+export const Alert = ({ msg, alertVisibility, variant = 'info' }: AlertProps): JSX.Element => {
     const [value, setValue] = useState<boolean>(true);
     useEffect(() => {
-        setValue(visibility)
-    }, [visibility])
+        setValue(alertVisibility)
+    }, [alertVisibility])
     return (
-        <AlertContainer visibility={value} variant={variant}>
+        <AlertContainer alertVisibility={value} variant={variant}>
             {msg}
         </AlertContainer>
     )
